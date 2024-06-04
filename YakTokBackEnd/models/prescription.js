@@ -34,7 +34,7 @@ class Prescription extends Sequelize.Model {
 
   static associate(db) {
     db.Prescription.belongsTo(db.User, { foreignKey: 'userID', sourceKey: 'id' });
-    db.Prescription.belongsToMany(db.Pill, { through: 'PrescriptionPill', foreignKey: 'prescriptionID' });
+    db.Prescription.belongsToMany(db.Pill, { through: 'instruction', foreignKey: 'prescriptionID' });
     db.Prescription.belongsTo(db.Receipt, { foreignKey: 'prescriptionID', targetKey: 'prescriptionID', onDelete: 'CASCADE', hooks: true});
   }
 }

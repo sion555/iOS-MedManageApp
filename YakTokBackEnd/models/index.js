@@ -16,25 +16,21 @@ const User = require('./user');
 const Pill = require('./pill');
 const Prescription = require('./prescription');
 const Receipt = require('./receipt');
-const Instructions = require('./instructions');
 
 db.User = User;
 db.Pill = Pill;
 db.Prescription = Prescription;
 db.Receipt = Receipt;
-db.Instructions = Instructions;
 
 User.init(sequelize);
 Pill.init(sequelize);
 Prescription.init(sequelize);
 Receipt.init(sequelize);
-Instructions.init(sequelize);
 
 User.associate(db);
 Pill.associate(db);
 Prescription.associate(db);
 Receipt.associate(db);
-Instructions.associate(db);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

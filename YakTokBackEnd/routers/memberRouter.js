@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const Pill = require('../models/pill');
 const Prescription = require('../models/prescription');
 const Receipt = require('../models/receipt');
-const Instructions = require('../models/instructions');
+const Instruction = require('../models/instruction');
 const isAuth = require('./authorization');
 
 const secret = process.env.JWT_SECRET;

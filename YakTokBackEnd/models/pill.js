@@ -45,8 +45,7 @@ class Pill extends Sequelize.Model {
 
   static associate(db) {
     db.Pill.belongsTo(db.User, { foreignKey: 'userID', sourceKey: 'id' });
-    db.Pill.belongsToMany(db.Prescription, { through: 'PrescriptionPill', foreignKey: 'pillName' });
-    db.Pill.hasMany(db.Instructions, { foreignKey: 'pillName', sourceKey: 'pillName' });
+    db.Pill.belongsToMany(db.Prescription, { through: 'instruction', foreignKey: 'pillName' });
   }
 }
 
