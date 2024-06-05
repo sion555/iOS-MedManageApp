@@ -4,10 +4,6 @@ class Prescription extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
-        pillID: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-        },
         userID: {
             type: Sequelize.STRING(50),
             allowNull: false,

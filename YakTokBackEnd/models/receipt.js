@@ -6,10 +6,6 @@ class Receipt extends Sequelize.Model {
     
     return super.init(
       { 
-        userID: {
-            type: Sequelize.STRING(50),
-            allowNull: false,
-        },
         ReceiptID: {
             type: Sequelize.INTEGER,
             allowNull: false,
@@ -44,7 +40,6 @@ class Receipt extends Sequelize.Model {
     );
   }
   static associate(db) {
-    db.Receipt.belongsTo(db.User, { foreignKey: 'userID', sourceKey: 'id' });
     db.Receipt.hasOne(db.Prescription, { foreignKey: 'prescriptionID', sourceKey: 'prescriptionID', delete: 'CASCADE', hooks: true});
   }
 }
