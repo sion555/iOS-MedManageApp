@@ -4,6 +4,10 @@ class Prescription extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
+        pillID: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+        },
         userID: {
             type: Sequelize.STRING(50),
             allowNull: false,
@@ -34,8 +38,7 @@ class Prescription extends Sequelize.Model {
 
   static associate(db) {
     db.Prescription.belongsTo(db.User, { foreignKey: 'userID', sourceKey: 'id' });
-    db.Prescription.belongsToMany(db.Pill, { through: 'instruction', foreignKey: 'prescriptionID', OtherKey: 'pillName'});
-    db.Prescription.belongsTo(db.Receipt, { foreignKey: 'prescriptionID', targetKey: 'prescriptionID', onDelete: 'CASCADE', hooks: true});
+    db.Prescription.hasOne(db.Receipt, { foreignKey: 'prescriptionID', targetKey: 'prescriptionID', onDelete: 'CASCADE', hooks: true});
   }
 }
 

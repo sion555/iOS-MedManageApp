@@ -29,7 +29,6 @@ class User extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.User.hasMany(db.Pill, { foreignKey: 'userID', sourceKey: 'id' });
     db.User.hasMany(db.Prescription, { foreignKey: 'userID', sourceKey: 'id' });
     db.User.hasMany(db.Receipt, { foreignKey: 'userID', sourceKey: 'id' });
   }
