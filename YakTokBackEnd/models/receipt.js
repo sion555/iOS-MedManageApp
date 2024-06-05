@@ -10,11 +10,16 @@ class Receipt extends Sequelize.Model {
             type: Sequelize.STRING(50),
             allowNull: false,
         },
-        prescriptionID: {
+        ReceiptID: {
             type: Sequelize.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
+        },
+        prescriptionID: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            primaryKey: true,
         },
         totalAmount: {
             type: Sequelize.INTEGER,

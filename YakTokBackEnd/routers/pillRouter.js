@@ -10,22 +10,24 @@ const { where } = require('sequelize');
 router.post('/', upload.single('photo'));
 
 router.post('/', async (req, res) => {
-    const newPill = req.body;
-    newPill.pillName = req.body.pillName;
-    newPill.pillImage = req.filename;
-    newPill.pillDescription = req.body.pillDescription;
-    newPill.pillType = req.body.pillType;
-    newPill.storageMethod = req.body.storageMethod;
-    newPill.medicineEffect = req.body.medicineEffect;
-    console.log(newPill);
+    let bulkPill = req.body.pill;
+
+    if (!Array.isArray(bulkPill)) {
+        bulkPill = bulkPill ? [bulkPill] : [];
+    }
+
+    bulkPill = bulkPill.map((pill) => {
+        pill.prescriptionID = req.body.prescriptionID;
+        return pill;
+    });
+
     try {
-        const result = await Pill.create(newPill);
+        const result = await Pill.bulkCreate(bulkPill);
+        res.json({ success: true, pill: result, message: '약 추가 성공' });
         console.log(result);
-        result.price = parseInt(result.price);
-        res.json({ success: true, pill: [result], message: '약 추가 성공' });
     } catch (error) {
         console.error(error);
-        res.json({ success: false, pill: [], message: "약 추가 실패" });
+        res.json({ success: false, pill: [], message: '약 추가 실패' });
     }
 });
 

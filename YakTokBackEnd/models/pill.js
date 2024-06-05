@@ -4,6 +4,12 @@ class Pill extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
        {
+        pillID: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          primaryKey: true,
+          autoIncrement: true,
+        },
         userID: {
           type: Sequelize.STRING(50),
           allowNull: false,
@@ -11,7 +17,6 @@ class Pill extends Sequelize.Model {
         pillName: {
           type: Sequelize.STRING(50),
           allowNull: false,
-          unique: true,
         },
         pillImage: {
             type: Sequelize.STRING(255),
@@ -39,13 +44,13 @@ class Pill extends Sequelize.Model {
         paranoid: true,
         modelName: 'Pill',
         tableName: 'pill',
-      }
+      },
     );
   }
 
   static associate(db) {
     db.Pill.belongsTo(db.User, { foreignKey: 'userID', sourceKey: 'id' });
-    db.Pill.belongsToMany(db.Prescription, { through: 'instruction', foreignKey: 'pillName' });
+    db.Pill.belongsToMany(db.Prescription, { through: 'instruction', foreignKey: 'pillName', OtherKey: 'prescriptionID'});
   }
 }
 
