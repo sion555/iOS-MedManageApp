@@ -33,8 +33,8 @@ router.post('/', async (req, res) => {
             receipt = await Receipt.create({ 
                 prescriptionID: prescriptionID,
                 totalAmount: req.body.totalAmount,
-                presonalExpense: req.body.personalExpense,
-                insuaranceExpense: req.body.insuaranceExpense,
+                personalExpense: req.body.personalExpense,
+                insuranceExpense: req.body.insuranceExpense,
                 prescriptionDate: req.body.prescriptionDate,
             });
         }
