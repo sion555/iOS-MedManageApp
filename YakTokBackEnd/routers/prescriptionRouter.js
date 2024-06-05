@@ -41,57 +41,6 @@ router.delete('/:prescriptionID', async (req, res) => {
   
   
 
-router.post('/', async (req, res) => {
-    let bulkPrescription = req.body.prescription;
-
-    if (!Array.isArray(bulkPrescription)) {
-        bulkPrescription = bulkPrescription ? [bulkPrescription] : [];
-    }
-
-    bulkPrescription = bulkPrescription.map((prescription) => {
-        prescription.userID = req.body.userID;
-        return prescription;
-    });
-
-    try {
-        const result = await Prescription.bulkCreate(bulkPrescription);
-        res.json({ success: true, prescription: result, message: '처방 추가 성공' });
-        console.log(result);
-    } catch (error) {
-        console.error(error);
-        res.json({ success: false, prescription: [], message: '처방 추가 실패' });
-    }
-});
-
-// router.post('/update', async (req, res) => {
-//     const newDetails = {
-//         pillID: req.body.pillID,
-//         pillName: req.body.pillName,
-//         pillImage: req.body.pillImage,
-//         pillDescription: req.body.pillDescription,
-//     };
-//     async function updatePrescription(prescriptionID, pillID, newDetails, res) {
-//         try {
-//             const pill = await Pill.findOne({
-//                 where: {
-//                     id: pillID,
-//                     prescriptionID: prescriptionID
-//                 }
-//             });
-    
-//             if (pill) {
-//                 await pill.update(newDetails);
-//                 console.log("약 정보 업데이트 성공");
-//             } else {
-//                 console.log("약 정보가 존재하지 않습니다.");
-//             }
-//         } catch (error) {
-//             console.error(error);
-//             res.json({ success: false, prescription: [], message: '처방 업데이트 실패' });
-//         }
-//     }
-// }   
-// );
 
 
 module.exports = router;

@@ -1,5 +1,5 @@
 const express = require('express');
-const { Pill } = require('../models/index');
+const { Pill, Prescription, Receipt } = require('../models/index');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -11,10 +11,54 @@ router.post('/', upload.single('photo'));
 
 router.post('/', async (req, res) => {
     let bulkPill = req.body.pill;
+    let prescriptionID = req.body.prescriptionID;
 
+    if (!prescriptionID)    {
+        try {
+            const newPrescription = await Prescription.create({
+                userID: req.body.userID,
+                hospitalName: req.body.hospitalName,
+                prescriptionDate: req.body.prescriptionDate,
+            });
+            prescriptionID = newPrescription.prescriptionID;
+        }
+        catch (error) {
+            console.error("처방 생성 실패: ", error);
+            return res.status(500).json({ success: false, message: '처방 생성 실패' });
+        }
+    }
+    try {
+        let receipt = await Receipt.findOne({ where: { prescriptionID: prescriptionID } });
+        if (!receipt) {
+            receipt = await Receipt.create({ 
+                prescriptionID: prescriptionID,
+                totalAmount: req.body.totalAmount,
+                personalExpense: req.body.personalExpense,
+                insuranceExpense: req.body.insuranceExpense,
+                prescriptionDate: req.body.prescriptionDate,
+            });
+        }
+    }
+    catch (error) {
+        console.error("영수증 생성 실패: ", error);
+        return res.status(500).json({ success: false, message: '영수증 생성 실패' });
+    }
     if (!Array.isArray(bulkPill)) {
         bulkPill = bulkPill ? [bulkPill] : [];
     }
+
+    const uniqueNames = new Set();
+    const duplicates = bulkPill.filter(pill => {
+        if (uniqueNames.has(pill.pillName)) {
+            return true;
+        }
+        uniqueNames.add(pill.pillName);
+        return false;
+    
+    });
+    if (duplicates.length > 0) {
+        return res.status(400).json({ success: false, message: '중복된 약 이름이 있습니다.' });
+    };
 
     bulkPill = bulkPill.map((pill) => {
         pill.prescriptionID = req.body.prescriptionID;
