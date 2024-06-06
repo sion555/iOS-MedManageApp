@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const Instruction = require('./instruction');
 
 class Pill extends Sequelize.Model {
   static init(sequelize) {
@@ -50,6 +51,10 @@ class Pill extends Sequelize.Model {
         ]
       },
     );
+  }
+  static associate(db) {
+  db.Pill.belongsToMany(db.Prescription, { through: db.Instruction, foreignKey: 'pillID', sourceKey: 'pillID' });
+  db.Pill.hasMany(db.Instruction, { foreignKey: 'pillID', sourceKey: 'pillID' });
   }
 }
 

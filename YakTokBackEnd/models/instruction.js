@@ -1,38 +1,37 @@
-const { sequelize, Prescription } = require(".");
-const { DataTypes } = require("sequelize");
-const { Pill } = require("./index");
+const Sequelize = require('sequelize');
 
-const Instruction = sequelize.define(
-    'Instruction', 
+class Instruction extends Sequelize.Model{
+    static init (sequelize) {
+    return super.init( 
     {
         pillID: {
-            type: DataTypes.INTEGER,
+            type: Sequelize.INTEGER,
             allowNull: false,
             primaryKey: true,
         },
         prescriptionID: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-        },
-        pillName: {
-            type: DataTypes.STRING(50),
+            type: Sequelize.INTEGER,
             allowNull: false,
             primaryKey: true,
         },
         instruction: {
-            type: DataTypes.STRING(100),
+            type: Sequelize.TEXT,
         },
     },
     {
+        sequelize,
         timestamps: true,
         paranoid: true,
         modelName: 'Instruction',
         tableName: 'instruction',
-    },
-    
-);
-Pill.belongsToMany(Prescription, { through: Instruction, foreignKey: 'pillID', sourceKey: 'pillID' }),
-Prescription.belongsToMany(Pill, { through: Instruction, foreignKey: 'prescriptionID', sourceKey: 'prescriptionID' }),
+            },
+        )
+    }
+    static associate(db) {
+    db.Instruction.belongsTo(db.Pill, { foreignKey: 'pillID', targetKey: 'pillID' });
+    db.Instruction.belongsTo(db.Prescription, { foreignKey: 'prescriptionID', targetKey: 'prescriptionID' });
+    }
+};
+
 
 module.exports = Instruction;

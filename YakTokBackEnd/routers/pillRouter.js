@@ -1,5 +1,5 @@
 const express = require('express');
-const { Pill, Prescription, Receipt, User } = require('../models/index');
+const { Pill, Prescription, Receipt, User, Instruction } = require('../models/index');
 const router = express.Router();
 const { Sequelize } = require('sequelize');
 const env = process.env.NODE_ENV || 'development';
@@ -73,16 +73,20 @@ router.post('/', async (req, res) => {
         return res.status(400).json({ success: false, message: '중복된 약 이름이 있습니다.' });
     };
 
-    bulkPill = bulkPill.map((pill) => {
-        pill.prescriptionID = req.body.prescriptionID;
-        return pill;
-    });
-
     try {
-        const result = await Pill.bulkCreate(bulkPill, { transaction });
+        const pillResults = await Pill.bulkCreate(bulkPill, { transaction });
+
+        const instructions = pillResults.map((pill, index) => ({
+            prescriptionID: prescriptionID,
+            pillID: pill.pillID,
+            pillName: bulkPill[index].pillName,
+            instruction: bulkPill[index].instruction || ''
+        }));
+
+        await Instruction.bulkCreate(instructions, { transaction });
+
         await transaction.commit();
-        res.json({ success: true, pill: result, message: '약 추가 성공' });
-        console.log(result);
+        res.json({ success: true, pill: pillResults, message: '약 추가 성공' });
     } catch (error) {
         await transaction.rollback();
         console.error(error);

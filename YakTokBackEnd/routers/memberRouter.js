@@ -74,11 +74,20 @@ router.get('/search', isAuth, async (req, res) => {
     const options = {
         where: { userID: userID },
         include: [
-            { model: Prescription, as: 'Prescriptions',
+            { 
+                model: Prescription, 
+                as: 'Prescriptions',
                 include: [
-                    { model: Pill, as: 'Pills' },
                     { model: Receipt, as: 'Receipt' },
-                ],},
+                    { 
+                        model: Instruction, 
+                        as: 'Instructions', 
+                        include: [
+                            { model: Pill, as: 'Pill' }
+                        ]
+                    },
+                ]
+            },
         ],
     };
     try {
