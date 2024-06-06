@@ -10,10 +10,6 @@ class Pill extends Sequelize.Model {
           primaryKey: true,
           autoIncrement: true,
         },
-        userID: {
-          type: Sequelize.STRING(50),
-          allowNull: false,
-        },
         pillName: {
           type: Sequelize.STRING(50),
           allowNull: false,
@@ -44,6 +40,14 @@ class Pill extends Sequelize.Model {
         paranoid: true,
         modelName: 'Pill',
         tableName: 'pill',
+        indexes: [
+          {
+            fields: ['pillName']
+          },
+          {
+            fields: ['pillType']
+          },
+        ]
       },
     );
   }
