@@ -4,7 +4,7 @@ class User extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
-        id: {
+        userID: {
           type: Sequelize.STRING(50),
           allowNull: false,
           primaryKey: true,
@@ -29,7 +29,8 @@ class User extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.User.hasMany(db.Prescription, { foreignKey: 'userID', sourceKey: 'id' });
+    db.User.hasMany(db.Prescription, { foreignKey: 'userID', sourceKey: 'userID' });
+    db.User.hasMany(db.Receipt, { foreignKey: 'userID', sourceKey: 'userID' });
   }
 }
 

@@ -40,6 +40,14 @@ class Pill extends Sequelize.Model {
         paranoid: true,
         modelName: 'Pill',
         tableName: 'pill',
+        indexes: [
+          {
+            fields: ['pillName']
+          },
+          {
+            fields: ['pillType']
+          },
+        ]
       },
     );
   }
