@@ -22,7 +22,7 @@ router.post('/sign-up', async (req, res) => {
   if (!member.password) {
     return res.status(400).json({ success: false, message: 'Password is required' });
   }
-  const existingUser = await User.findOne({ where: { id: member.id } });
+  const existingUser = await User.findOne({ where: { userID: member.userID } });
   if (existingUser) {
     return res.status(400).json({ success: false, message: 'A user with this ID already exists' });
   }
@@ -39,22 +39,22 @@ router.post('/sign-up', async (req, res) => {
 });
 
 router.post('/sign-in', async (req, res) => {
-    const { id, password } = req.body;
+    const { userID, password } = req.body;
     const options = {
-        attributes: ['password', 'id'],
-        where: { id: id },
+        attributes: ['password', 'userID'],
+        where: { userID: userID },
     };
 
     const result = await User.findOne(options);
     if (result) {
         const compared = await bcrypt.compare(password, result.password);
         if (compared) {
-            const token = jwt.sign({ uid: result.id, rol: 'user' }, secret);
+            const token = jwt.sign({ uid: result.userID, rol: 'user' }, secret);
             res.json({ 
                 success: true, 
                 token: token, 
                 member: {
-                id: result.id,
+                userID: result.userID,
                 userName: result.userName,
             }, 
             message: '로그인 성공',
@@ -70,9 +70,9 @@ router.post('/sign-in', async (req, res) => {
 });
 
 router.get('/search', isAuth, async (req, res) => {
-    const { id } = req.query;
+    const { userID } = req.query;
     const options = {
-        where: { id: id },
+        where: { userID: userID },
         include: [
             { model: Prescription, as: 'Prescriptions',
                 include: [
