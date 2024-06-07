@@ -20,19 +20,15 @@ class Pill extends Sequelize.Model {
         },
         pillDescription: {
           type: Sequelize.TEXT,
-          allowNull: false,
         }, 
         pillType: {
           type: Sequelize.STRING(50),
-          allowNull: false,
         },
         storageMethod: {
           type: Sequelize.STRING(100),
-          allowNull: false,
         },
         medicineEffect: {
           type: Sequelize.TEXT,
-          allowNull: false,
         },
       },
       {
