@@ -10,7 +10,7 @@ class Receipt extends Sequelize.Model {
             type: Sequelize.STRING(50),
             allowNull: false,
         },
-        receiptID: {
+        ReceiptID: {
             type: Sequelize.INTEGER,
             allowNull: false,
             primaryKey: true,
