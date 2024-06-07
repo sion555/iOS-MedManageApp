@@ -36,19 +36,26 @@ struct UserInfoView: View {
                         .font(.title)
                 }
                 Section(isExpanded: $isExpanded2){
-                    Toggle(isOn: $isExpanded3, label: {
-                        Text("알림")
-                    })
+                    Text("알림")
                 } header: {
                     Text("앱 설정")
                         .font(.title)
                 }
                 
-                Section(isExpanded: $isExpanded4){
+                Section(isExpanded: $isExpanded3){
                     Text("로그아웃")
                     Text("회원 탈퇴")
                 } header: {
                     Text("계정 설정")
+                        .font(.title)
+                }
+                
+                Section(isExpanded: $isExpanded4){
+                    Text("오픈소스 라이선스")
+                    Text("이용약관")
+                    Text("개인정보처리방침")
+                } header: {
+                    Text("약관 및 정책")
                         .font(.title)
                 }
             }.listStyle(.sidebar)
