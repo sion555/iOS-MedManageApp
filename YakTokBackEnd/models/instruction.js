@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const Hooks = require('sequelize/lib/hooks');
 
 class Instruction extends Sequelize.Model{
     static init (sequelize) {
@@ -29,7 +30,7 @@ class Instruction extends Sequelize.Model{
     }
     static associate(db) {
     db.Instruction.belongsTo(db.Pill, { foreignKey: 'pillID', targetKey: 'pillID' });
-    db.Instruction.belongsTo(db.Prescription, { foreignKey: 'prescriptionID', targetKey: 'prescriptionID' });
+    db.Instruction.belongsTo(db.Prescription, { foreignKey: 'prescriptionID', targetKey: 'prescriptionID', onDelete: 'CASCADE', hooks: true});
     }
 };
 

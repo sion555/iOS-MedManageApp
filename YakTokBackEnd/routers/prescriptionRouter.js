@@ -1,5 +1,5 @@
 const express = require('express');
-const { Prescription, Receipt } = require('../models/index');
+const { Prescription, Receipt, Pill } = require('../models/index');
 const router = express.Router();
 const { Sequelize } = require('sequelize');
 const bcrypt = require('bcrypt');
@@ -36,11 +36,10 @@ router.delete('/:prescriptionID', async (req, res) => {
           where: { prescriptionID: prescriptionID },
           transaction: transaction
       };
-
-      const receiptResult = await Receipt.destroy(options);
+      
       const prescriptionResult = await Prescription.destroy(options);
 
-      if (prescriptionResult === 0 && receiptResult === 0) {
+      if (prescriptionResult === 0) {
           await transaction.rollback();
           return res.json({ success: false, message: '처방 삭제 실패, 해당 처방이 없습니다.' });
       }

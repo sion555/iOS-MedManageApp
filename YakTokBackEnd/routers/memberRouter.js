@@ -18,7 +18,7 @@ const createHash = async (password, saltRound) => {
 };
 
 router.post('/sign-up', async (req, res) => {
-    const { password, userID, userName } = req.body;
+    let { password, userID, userName } = req.body;
     if (password === ""||userID === ""||userName === "") {
         return res.status(400).json({ success: false, message: '유저 정보를 전부 입력해주세요' });
     }
@@ -36,8 +36,12 @@ router.post('/sign-up', async (req, res) => {
 
     const hashedPassword = await createHash(password, 10);
     console.log(password);
-    password = hashedPassword;
-    const result = await User.create(member);
+    const newUser = { 
+        userID: userID,
+        userName: userName,
+        password: hashedPassword
+    };
+    const result = await User.create(newUser);
     res.json({ success: true, member: result, message: '멤버 추가 성공' });
     }catch (err) {
     console.error(err);
