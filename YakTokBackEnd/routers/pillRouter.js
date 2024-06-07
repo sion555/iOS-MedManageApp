@@ -23,7 +23,19 @@ router.post('/', async (req, res) => {
     try {
         transaction = await sequelize.transaction(); // 트랜잭션 시작
 
-        const { pill: bulkPill, prescriptionID: initialPrescriptionID, userID, hospitalName, prescriptionDate, totalAmount, personalExpense, insuranceExpense } = req.body;
+        const { pill: bulkPill, prescriptionID: initialPrescriptionID, 
+            userID, 
+            hospitalName, 
+            prescriptionDate, 
+            totalPillExpense,
+            nonCoveredExpense,
+            cardPayment,
+            personalExpense, 
+            cashPayment,
+            totalPayment,
+            receiptNumber,
+            pharmacyName,
+            insuranceExpense } = req.body;
 
         if (!userID || !hospitalName || !prescriptionDate) {
             throw new Error('필수 정보가 누락되었습니다.');
@@ -44,10 +56,17 @@ router.post('/', async (req, res) => {
             receipt = await Receipt.create({
                 prescriptionID,
                 userID,
-                totalAmount,
+                totalPillExpense,
+                nonCoveredExpense,
+                cardPayment,
+                cashPayment,
+                totalPayment,
+                receiptNumber,
                 personalExpense,
                 insuranceExpense,
                 prescriptionDate,
+                pharmacyName,
+                hospitalName,
             }, { transaction });
         }
 

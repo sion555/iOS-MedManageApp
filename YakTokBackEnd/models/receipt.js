@@ -24,7 +24,7 @@ class Receipt extends Sequelize.Model {
         receiptNumber: {
             type: Sequelize.STRING(50),
         },
-        totalAmount: {
+        totalPillExpense: {
             type: Sequelize.INTEGER,
         },
         personalExpense : {
