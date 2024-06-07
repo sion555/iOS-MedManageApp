@@ -21,6 +21,9 @@ class Receipt extends Sequelize.Model {
             allowNull: false,
             primaryKey: true,
         },
+        receiptNumber: {
+            type: Sequelize.STRING(50),
+        },
         totalAmount: {
             type: Sequelize.INTEGER,
         },
@@ -30,8 +33,26 @@ class Receipt extends Sequelize.Model {
         insuranceExpense : {
             type : Sequelize.INTEGER,
         },
-        prescriptionDate: {
-            type: Sequelize.DATE,
+        nonCoveredExpense : {
+            type : Sequelize.INTEGER,
+        },
+        cardPayment : {
+            type : Sequelize.INTEGER,
+        },
+        cashPayment : {
+            type : Sequelize.INTEGER,
+        },
+        cashReceipt : {
+            type : Sequelize.INTEGER,
+        },
+        totalPayment : {
+          type : Sequelize.INTEGER,
+        },
+        pharmacyName: {
+            type: Sequelize.STRING(100),
+        },
+        hospitalName: {
+            type: Sequelize.STRING(100),
         },
       },
       {
