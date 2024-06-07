@@ -9,7 +9,15 @@ let sequelize = new Sequelize(
   config.database,
   config.username,
   config.password,
-  config
+  {
+    ...config,
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 100000,
+    }
+  }
 );
 
 const User = require('./user');
