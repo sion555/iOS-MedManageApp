@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const Instruction = require('./instruction');
 
 class Pill extends Sequelize.Model {
   static init(sequelize) {
@@ -19,19 +20,15 @@ class Pill extends Sequelize.Model {
         },
         pillDescription: {
           type: Sequelize.TEXT,
-          allowNull: false,
         }, 
         pillType: {
           type: Sequelize.STRING(50),
-          allowNull: false,
         },
         storageMethod: {
           type: Sequelize.STRING(100),
-          allowNull: false,
         },
         medicineEffect: {
           type: Sequelize.TEXT,
-          allowNull: false,
         },
       },
       {
@@ -50,6 +47,10 @@ class Pill extends Sequelize.Model {
         ]
       },
     );
+  }
+  static associate(db) {
+  db.Pill.belongsToMany(db.Prescription, { through: db.Instruction, foreignKey: 'pillID', sourceKey: 'pillID' });
+  db.Pill.hasMany(db.Instruction, { foreignKey: 'pillID', sourceKey: 'pillID' });
   }
 }
 

@@ -44,7 +44,7 @@ class Receipt extends Sequelize.Model {
     );
   }
   static associate(db) {
-    db.Receipt.belongsTo(db.User, { foreignKey: 'userID', sourceKey: 'id' });
+    db.Receipt.belongsTo(db.User, { foreignKey: 'userID', sourceKey: 'userID' });
     db.Receipt.hasOne(db.Prescription, { foreignKey: 'prescriptionID', sourceKey: 'prescriptionID', delete: 'CASCADE', hooks: true});
   }
 }

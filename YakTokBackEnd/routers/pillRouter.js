@@ -1,79 +1,89 @@
 const express = require('express');
-const { Pill, Prescription, Receipt } = require('../models/index');
+const { Pill, Prescription, Receipt, User, Instruction } = require('../models/index');
 const router = express.Router();
+const { Sequelize } = require('sequelize');
+const env = process.env.NODE_ENV || 'development';
+const config = require('../config/config.json')[env];
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const secret = process.env.JWT_SECRET;
+const sequelize = new Sequelize(
+    config.database,
+    config.username,
+    config.password,
+    config
+  );
 
 const upload = require('./uploadImage');
 const { where } = require('sequelize');
 router.post('/', upload.single('photo'));
 
 router.post('/', async (req, res) => {
-    let bulkPill = req.body.pill;
-    let prescriptionID = req.body.prescriptionID;
+    let transaction;
+    try {
+        transaction = await sequelize.transaction(); // 트랜잭션 시작
 
-    if (!prescriptionID)    {
-        try {
+        const { pill: bulkPill, prescriptionID: initialPrescriptionID, userID, hospitalName, prescriptionDate, totalAmount, personalExpense, insuranceExpense } = req.body;
+
+        if (!userID || !hospitalName || !prescriptionDate) {
+            throw new Error('필수 정보가 누락되었습니다.');
+        }
+
+        let prescriptionID = initialPrescriptionID;
+        if (!prescriptionID) {
             const newPrescription = await Prescription.create({
-                userID: req.body.userID,
-                hospitalName: req.body.hospitalName,
-                prescriptionDate: req.body.prescriptionDate,
-            });
+                userID,
+                hospitalName,
+                prescriptionDate,
+            }, { transaction });
             prescriptionID = newPrescription.prescriptionID;
         }
-        catch (error) {
-            console.error("처방 생성 실패: ", error);
-            return res.status(500).json({ success: false, message: '처방 생성 실패' });
-        }
-    }
-    try {
-        let receipt = await Receipt.findOne({ where: { prescriptionID: prescriptionID } });
+
+        let receipt = await Receipt.findOne({ where: { prescriptionID } });
         if (!receipt) {
-            receipt = await Receipt.create({ 
-                prescriptionID: prescriptionID,
-                totalAmount: req.body.totalAmount,
-                personalExpense: req.body.personalExpense,
-                insuranceExpense: req.body.insuranceExpense,
-                prescriptionDate: req.body.prescriptionDate,
-            });
+            receipt = await Receipt.create({
+                prescriptionID,
+                userID,
+                totalAmount,
+                personalExpense,
+                insuranceExpense,
+                prescriptionDate,
+            }, { transaction });
         }
-    }
-    catch (error) {
-        console.error("영수증 생성 실패: ", error);
-        return res.status(500).json({ success: false, message: '영수증 생성 실패' });
-    }
-    if (!Array.isArray(bulkPill)) {
-        bulkPill = bulkPill ? [bulkPill] : [];
-    }
 
-    const uniqueNames = new Set();
-    const duplicates = bulkPill.filter(pill => {
-        if (uniqueNames.has(pill.pillName)) {
-            return true;
+        if (!Array.isArray(bulkPill)) {
+            bulkPill = bulkPill ? [bulkPill] : [];
         }
-        uniqueNames.add(pill.pillName);
-        return false;
-    
-    });
-    if (duplicates.length > 0) {
-        return res.status(400).json({ success: false, message: '중복된 약 이름이 있습니다.' });
-    };
 
-    bulkPill = bulkPill.map((pill) => {
-        pill.prescriptionID = req.body.prescriptionID;
-        return pill;
-    });
+        const uniqueNames = new Set();
+        const duplicates = bulkPill.filter(pill => !uniqueNames.has(pill.pillName) && !uniqueNames.add(pill.pillName));
+        if (duplicates.length > 0) {
+            throw new Error('중복된 약 이름이 있습니다.');
+        };
 
-    try {
-        const result = await Pill.bulkCreate(bulkPill);
-        res.json({ success: true, pill: result, message: '약 추가 성공' });
-        console.log(result);
+        const pillResults = await Pill.bulkCreate(bulkPill.map(pill => ({
+            ...pill,
+            prescriptionID
+        })), { transaction });
+
+        const instructions = pillResults.map(pill => ({
+            prescriptionID,
+            pillID: pill.pillID,
+            pillName: pill.pillName,
+            instruction: pill.instruction || ''
+        }));
+
+        await Instruction.bulkCreate(instructions, { transaction });
+
+        await transaction.commit();
+        res.json({ success: true, pill: pillResults, message: '약 추가 성공' });
     } catch (error) {
-        console.error(error);
-        res.json({ success: false, pill: [], message: '약 추가 실패' });
+        if (transaction) await transaction.rollback();
+        console.error("트랜잭션 처리 실패: ", error);
+        res.status(500).json({ success: false, message: error.message });
     }
 });
+
 
 router.get('/:id', async (req, res) => {
     const id = req.params.id;

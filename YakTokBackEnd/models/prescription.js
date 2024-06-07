@@ -1,13 +1,10 @@
 const Sequelize = require('sequelize');
+const Instruction = require('./instruction');
 
 class Prescription extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
-        pillID: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-        },
         userID: {
             type: Sequelize.STRING(50),
             allowNull: false,
@@ -37,8 +34,10 @@ class Prescription extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.Prescription.belongsTo(db.User, { foreignKey: 'userID', sourceKey: 'id' });
+    db.Prescription.belongsTo(db.User, { foreignKey: 'userID', sourceKey: 'userID' });
     db.Prescription.hasOne(db.Receipt, { foreignKey: 'prescriptionID', targetKey: 'prescriptionID', onDelete: 'CASCADE', hooks: true});
+    db.Prescription.belongsToMany(db.Pill, { through: db.Instruction, foreignKey: 'prescriptionID', sourceKey: 'prescriptionID' });
+    db.Prescription.hasMany(db.Instruction, { foreignKey: 'prescriptionID', sourceKey: 'prescriptionID' });
   }
 }
 
