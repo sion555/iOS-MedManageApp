@@ -99,7 +99,7 @@ router.post('/sign-in', async (req, res) => {
 }
 });
 
-router.get('/search', isAuth, async (req, res) => {
+router.get('/prescription', isAuth, async (req, res) => {
     const { userID } = req.query;
 
     if (!userID || userID.trim() === '') {
@@ -127,15 +127,17 @@ router.get('/search', isAuth, async (req, res) => {
     try {
         const result = await User.findOne(options); 
         if (result) { 
-            const pills = [];
-            result.Prescriptions.forEach(prescription => {
-                prescription.Instructions.forEach(instruction => {
-                    if (instruction.Pill) {
-                        pills.push(...(Array.isArray(instruction.Pill) ? instruction.Pill : [instruction.Pill]));
-                    }
-                });
-            });
-            res.json({ success: true, pills: pills, message: '멤버 및 관련 약 조회 성공' });
+            const prescriptionData = result.Prescriptions.map(prescription => ({
+                prescriptionID: prescription.prescriptionID,
+                hospitalName: prescription.hospitalName,
+                prescriptionStartDate: prescription.prescriptionStartDate,
+                prescriptionEndDate: prescription.prescriptionEndDate,
+                Instructions: prescription.Instructions.map(instruction => ({
+                    instructionText: instruction.instruction,
+                    Pills: instruction.Pill
+                }))
+            }));
+            res.json({ success: true, pills: prescriptionData, message: '멤버 및 관련 약 조회 성공' });
         } else { 
             res.json({ success: false, member: [], message: '멤버를 찾을 수 없습니다.' });
         }
@@ -144,4 +146,33 @@ router.get('/search', isAuth, async (req, res) => {
         res.json({ success: false, member: [], message: '멤버 조회 실패' });
     }
 });
+
+    router.get('/receipt', isAuth , async (req, res) => {
+        const { userID } = req.query;
+
+        if (!userID || userID.trim() === '') {
+            return res.status(400).json({ success: false, member: [], message: '다시 로그인해주세요' });
+        }
+
+        const options = {
+            where : { userID : userID},
+            include: [{
+                model: Receipt,
+                as: 'Receipts'
+            }]
+        };
+
+        try {
+            const userWithReceipts = await User.findOne(options);
+            if (userWithReceipts) {
+                res.json({ success: true, receipts: userWithReceipts.Receipts});
+            } else {
+                res.json.status(404).json({ success: false, message: '사용자 정보를 찾을 수 없습니다.'});
+            }
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ success: false, message: '정보 조회에 실패했습니다.'});
+        }
+        
+    })
 module.exports = router;
