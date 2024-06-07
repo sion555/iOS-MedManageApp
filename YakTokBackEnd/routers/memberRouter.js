@@ -127,7 +127,16 @@ router.get('/search', isAuth, async (req, res) => {
     try {
         const result = await User.findOne(options); 
         if (result) { 
-            res.json({ success: true, member: result, message: '멤버 조회 성공' });
+            const pills = [];
+            result.Prescriptions.forEach(prescription => {
+                prescription.Instructions.forEach(instruction => {
+                    if (instruction.Pill) {
+                        // 각 Instruction의 Pill 정보를 pills 배열에 추가
+                        pills.push(...(Array.isArray(instruction.Pill) ? instruction.Pill : [instruction.Pill]));
+                    }
+                });
+            });
+            res.json({ success: true, pills: pills, message: '멤버 및 관련 약 조회 성공' });
         } else { 
             res.json({ success: false, member: [], message: '멤버를 찾을 수 없습니다.' });
         }
