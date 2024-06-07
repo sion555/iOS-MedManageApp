@@ -131,7 +131,6 @@ router.get('/search', isAuth, async (req, res) => {
             result.Prescriptions.forEach(prescription => {
                 prescription.Instructions.forEach(instruction => {
                     if (instruction.Pill) {
-                        // 각 Instruction의 Pill 정보를 pills 배열에 추가
                         pills.push(...(Array.isArray(instruction.Pill) ? instruction.Pill : [instruction.Pill]));
                     }
                 });
