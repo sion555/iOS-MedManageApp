@@ -18,7 +18,10 @@ class Prescription extends Sequelize.Model {
         hospitalName: {
             type: Sequelize.STRING(100),
         },
-        prescriptionDate: {
+        prescriptionStartDate: {
+            type: Sequelize.DATE,
+        },
+        prescriptionEndDate: {
             type: Sequelize.DATE,
         },
       },

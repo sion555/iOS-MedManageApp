@@ -16,7 +16,7 @@ class Pill extends Sequelize.Model {
           allowNull: false,
         },
         pillImage: {
-            type: Sequelize.STRING(255),
+          type: Sequelize.STRING(255),
         },
         pillDescription: {
           type: Sequelize.TEXT,
