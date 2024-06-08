@@ -104,23 +104,4 @@ router.post('/', async (req, res) => {
 });
 
 
-router.get('/:id', async (req, res) => {
-    const id = req.params.id;
-    const options = {
-        where: { 
-            pillID: id 
-        },
-    }
-    try {
-        const result = await Pill.findAll(options);
-        if (result.length == 0) {
-            throw new Error('약이 존재하지 않음');
-        }
-        res.json({ success: true, pill: [result], message: '약 조회 성공' });
-    } catch (error) {
-        console.error(error);
-        res.json({ success: false, pill: [], message: '약 조회 실패' });
-    }
-});
-
 module.exports = router;
