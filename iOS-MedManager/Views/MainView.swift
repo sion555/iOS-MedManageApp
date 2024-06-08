@@ -19,12 +19,12 @@ struct MainView: View {
             CalenderView()
                 .tabItem {
                     Image(systemName: "calendar")
-                    Text("일정관리")
+                    Text("캘린더")
                 }
             UserInfoView()
                 .tabItem {
-                    Image(systemName: "person")
-                    Text("내 정보")
+                    Image(systemName: "gear")
+                    Text("설정")
                 }
         }
     }

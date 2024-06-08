@@ -8,59 +8,79 @@
 import SwiftUI
 
 struct UserInfoView: View {
-    @State var isExpanded1 = true
-    @State var isExpanded2 = true
-    @State var isExpanded3 = true
-    @State var isExpanded4 = true
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Image("약톡톡 고양이메인캐릭터")
-                    .resizable()
-                    .frame(width: 80, height: 80)
-                VStack(alignment: .leading) {
+        NavigationStack {
+            VStack(alignment: .leading) {
+                
+                Spacer()
+                VStack(alignment: .center) {
+                    Image("약톡톡 고양이메인캐릭터")
+                        .resizable()
+                        .frame(width: 150, height: 150)
+                        .clipShape(Circle())
+                    
                     Text("사용자님")
                         .font(.title)
+                        .bold()
                         .foregroundStyle(.orange)
-                    Text("안녕하세요!")
-                        .font(.title)
+                    
+                    Button(action: {}, label: {
+                        Text("내 정보 수정")
+                            .frame(width: 100, height: 30)
+                        // 버튼 테두리 색과 두께 설정
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 30)
+                                    .stroke(Color.blue, lineWidth: 2)
+                            )
+                    })
+                    .padding(.bottom, 10)
+                    
+                    HStack(spacing: 20) {
+                        Button(action: {}, label: {
+                            Text("알림")
+                        }).padding()
+                        Divider()
+                            .frame(width: 2 , height: 30)
+                            .background(.white)
+                            
+                        Button(action: {}, label: {
+                            Text("특이사항")
+                        })
+                        Divider()
+                            .frame(width: 2 ,height: 30)
+                            .background(.white)
+                        Button(action: {}, label: {
+                            Text("문의")
+                        }).padding()
+                    }
+                    .frame(width: 300, height: 50)
+                    .background(.blue)
+                    .foregroundStyle(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    
+                    
                 }
-            }.padding()
-            
-            List {
-                Section(isExpanded: $isExpanded1){
-                    Text("병원 기록")
-                    Text("특이사항")
-                } header: {
-                    Text("내 정보")
-                        .font(.title)
-                }
-                Section(isExpanded: $isExpanded2){
-                    Text("알림")
-                } header: {
-                    Text("앱 설정")
-                        .font(.title)
-                }
+                .padding()
+                .frame(maxWidth: .infinity)
                 
-                Section(isExpanded: $isExpanded3){
-                    Text("로그아웃")
-                    Text("회원 탈퇴")
-                } header: {
-                    Text("계정 설정")
-                        .font(.title)
-                }
+                List {
+                    
+                    Section {
+                        Text("로그아웃")
+                        Text("회원 탈퇴")
+                    }
+                    
+                    Section {
+                        Text("오픈소스 라이선스")
+                        Text("이용약관")
+                        Text("개인정보처리방침")
+                    
+                    }
+                }.listStyle(.sidebar)
                 
-                Section(isExpanded: $isExpanded4){
-                    Text("오픈소스 라이선스")
-                    Text("이용약관")
-                    Text("개인정보처리방침")
-                } header: {
-                    Text("약관 및 정책")
-                        .font(.title)
-                }
-            }.listStyle(.sidebar)
-            
+            }
         }
+        .navigationTitle("설정")
     }
 }
 
