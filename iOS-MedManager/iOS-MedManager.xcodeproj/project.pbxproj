@@ -11,7 +11,39 @@
 		BE028FC32C0D360000B81352 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE028FC22C0D360000B81352 /* ContentView.swift */; };
 		BE028FC52C0D360100B81352 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE028FC42C0D360100B81352 /* Assets.xcassets */; };
 		BE028FC82C0D360100B81352 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE028FC72C0D360100B81352 /* Preview Assets.xcassets */; };
+		BE028FD72C0D592B00B81352 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BE028FD62C0D592B00B81352 /* Alamofire */; };
+		BE028FDB2C0D5CFC00B81352 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE028FDA2C0D5CFC00B81352 /* AuthResponse.swift */; };
+		BE028FDD2C0EEBA000B81352 /* MedicineAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE028FDC2C0EEBA000B81352 /* MedicineAPIModel.swift */; };
+		BE028FDF2C0F18DD00B81352 /* AzureAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE028FDE2C0F18DD00B81352 /* AzureAIService.swift */; };
+		BE028FE52C0FFEF900B81352 /* AzureAIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE028FE42C0FFEF900B81352 /* AzureAIModel.swift */; };
+		BE028FE72C0FFFB500B81352 /* AzureAIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE028FE62C0FFFB500B81352 /* AzureAIViewModel.swift */; };
+		BE028FE92C10037900B81352 /* AzureAITestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE028FE82C10037900B81352 /* AzureAITestView.swift */; };
+		BE028FEB2C10054B00B81352 /* TestImage.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BE028FEA2C10054B00B81352 /* TestImage.jpeg */; };
+		BE028FED2C1057E100B81352 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE028FEC2C1057E100B81352 /* ImagePicker.swift */; };
+		BE4475C32C15835900ADDC59 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4475C22C15835900ADDC59 /* AuthViewModel.swift */; };
+		BE4475C52C158A6200ADDC59 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4475C42C158A6200ADDC59 /* LoginView.swift */; };
+		BE4475C72C158C5100ADDC59 /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4475C62C158C5100ADDC59 /* HexColor.swift */; };
+		BE4475C92C158D0400ADDC59 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4475C82C158D0400ADDC59 /* RegisterView.swift */; };
+		BE4475CE2C1596E700ADDC59 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4475CD2C1596E700ADDC59 /* AuthService.swift */; };
+		BE4475D02C1598E900ADDC59 /* PrescriptionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4475CF2C1598E900ADDC59 /* PrescriptionResponse.swift */; };
+		BE44761C2C16C15A00ADDC59 /* PillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE44761B2C16C15A00ADDC59 /* PillService.swift */; };
+		BE44761E2C16C34F00ADDC59 /* HomeMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE44761D2C16C34F00ADDC59 /* HomeMainView.swift */; };
+		BE4476202C16C36B00ADDC59 /* HomeMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE44761F2C16C36B00ADDC59 /* HomeMainViewModel.swift */; };
+		BE4476222C16C37C00ADDC59 /* PillRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4476212C16C37C00ADDC59 /* PillRowView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BE4475BE2C10861500ADDC59 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		BE028FBD2C0D360000B81352 /* iOS-MedManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-MedManager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -19,6 +51,25 @@
 		BE028FC22C0D360000B81352 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BE028FC42C0D360100B81352 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE028FC72C0D360100B81352 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BE028FDA2C0D5CFC00B81352 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
+		BE028FDC2C0EEBA000B81352 /* MedicineAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineAPIModel.swift; sourceTree = "<group>"; };
+		BE028FDE2C0F18DD00B81352 /* AzureAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureAIService.swift; sourceTree = "<group>"; };
+		BE028FE42C0FFEF900B81352 /* AzureAIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureAIModel.swift; sourceTree = "<group>"; };
+		BE028FE62C0FFFB500B81352 /* AzureAIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureAIViewModel.swift; sourceTree = "<group>"; };
+		BE028FE82C10037900B81352 /* AzureAITestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureAITestView.swift; sourceTree = "<group>"; };
+		BE028FEA2C10054B00B81352 /* TestImage.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = TestImage.jpeg; sourceTree = "<group>"; };
+		BE028FEC2C1057E100B81352 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		BE4475C12C108AEF00ADDC59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BE4475C22C15835900ADDC59 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		BE4475C42C158A6200ADDC59 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		BE4475C62C158C5100ADDC59 /* HexColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexColor.swift; sourceTree = "<group>"; };
+		BE4475C82C158D0400ADDC59 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		BE4475CD2C1596E700ADDC59 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		BE4475CF2C1598E900ADDC59 /* PrescriptionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionResponse.swift; sourceTree = "<group>"; };
+		BE44761B2C16C15A00ADDC59 /* PillService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillService.swift; sourceTree = "<group>"; };
+		BE44761D2C16C34F00ADDC59 /* HomeMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMainView.swift; sourceTree = "<group>"; };
+		BE44761F2C16C36B00ADDC59 /* HomeMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMainViewModel.swift; sourceTree = "<group>"; };
+		BE4476212C16C37C00ADDC59 /* PillRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE028FD72C0D592B00B81352 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -35,6 +87,7 @@
 		BE028FB42C0D360000B81352 = {
 			isa = PBXGroup;
 			children = (
+				BE028FEA2C10054B00B81352 /* TestImage.jpeg */,
 				BE028FBF2C0D360000B81352 /* iOS-MedManager */,
 				BE028FBE2C0D360000B81352 /* Products */,
 			);
@@ -51,6 +104,7 @@
 		BE028FBF2C0D360000B81352 /* iOS-MedManager */ = {
 			isa = PBXGroup;
 			children = (
+				BE4475C12C108AEF00ADDC59 /* Info.plist */,
 				BE028FC02C0D360000B81352 /* iOS_MedManagerApp.swift */,
 				BE028FC22C0D360000B81352 /* ContentView.swift */,
 				BE028FCE2C0D362C00B81352 /* Global */,
@@ -75,6 +129,8 @@
 		BE028FCE2C0D362C00B81352 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				BE028FEC2C1057E100B81352 /* ImagePicker.swift */,
+				BE4475C62C158C5100ADDC59 /* HexColor.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -82,6 +138,10 @@
 		BE028FCF2C0D363800B81352 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BE028FDA2C0D5CFC00B81352 /* AuthResponse.swift */,
+				BE4475CF2C1598E900ADDC59 /* PrescriptionResponse.swift */,
+				BE028FDC2C0EEBA000B81352 /* MedicineAPIModel.swift */,
+				BE028FE42C0FFEF900B81352 /* AzureAIModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -89,6 +149,9 @@
 		BE028FD02C0D364000B81352 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				BE4475C22C15835900ADDC59 /* AuthViewModel.swift */,
+				BE028FE62C0FFFB500B81352 /* AzureAIViewModel.swift */,
+				BE44761F2C16C36B00ADDC59 /* HomeMainViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -96,6 +159,10 @@
 		BE028FD12C0D367300B81352 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BE4475CA2C158D7300ADDC59 /* AuthViews */,
+				BE028FE82C10037900B81352 /* AzureAITestView.swift */,
+				BE44761D2C16C34F00ADDC59 /* HomeMainView.swift */,
+				BE4476212C16C37C00ADDC59 /* PillRowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -103,8 +170,20 @@
 		BE028FD22C0D369700B81352 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				BE028FDE2C0F18DD00B81352 /* AzureAIService.swift */,
+				BE4475CD2C1596E700ADDC59 /* AuthService.swift */,
+				BE44761B2C16C15A00ADDC59 /* PillService.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		BE4475CA2C158D7300ADDC59 /* AuthViews */ = {
+			isa = PBXGroup;
+			children = (
+				BE4475C42C158A6200ADDC59 /* LoginView.swift */,
+				BE4475C82C158D0400ADDC59 /* RegisterView.swift */,
+			);
+			path = AuthViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -117,12 +196,16 @@
 				BE028FB92C0D360000B81352 /* Sources */,
 				BE028FBA2C0D360000B81352 /* Frameworks */,
 				BE028FBB2C0D360000B81352 /* Resources */,
+				BE4475BE2C10861500ADDC59 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "iOS-MedManager";
+			packageProductDependencies = (
+				BE028FD62C0D592B00B81352 /* Alamofire */,
+			);
 			productName = "iOS-MedManager";
 			productReference = BE028FBD2C0D360000B81352 /* iOS-MedManager.app */;
 			productType = "com.apple.product-type.application";
@@ -151,6 +234,9 @@
 				Base,
 			);
 			mainGroup = BE028FB42C0D360000B81352;
+			packageReferences = (
+				BE028FD52C0D592B00B81352 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = BE028FBE2C0D360000B81352 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -165,6 +251,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE028FEB2C10054B00B81352 /* TestImage.jpeg in Resources */,
 				BE028FC82C0D360100B81352 /* Preview Assets.xcassets in Resources */,
 				BE028FC52C0D360100B81352 /* Assets.xcassets in Resources */,
 			);
@@ -177,8 +264,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE028FE92C10037900B81352 /* AzureAITestView.swift in Sources */,
+				BE4475C32C15835900ADDC59 /* AuthViewModel.swift in Sources */,
+				BE4475C92C158D0400ADDC59 /* RegisterView.swift in Sources */,
 				BE028FC32C0D360000B81352 /* ContentView.swift in Sources */,
+				BE028FDD2C0EEBA000B81352 /* MedicineAPIModel.swift in Sources */,
+				BE028FDF2C0F18DD00B81352 /* AzureAIService.swift in Sources */,
+				BE4476202C16C36B00ADDC59 /* HomeMainViewModel.swift in Sources */,
+				BE4475C52C158A6200ADDC59 /* LoginView.swift in Sources */,
+				BE028FDB2C0D5CFC00B81352 /* AuthResponse.swift in Sources */,
 				BE028FC12C0D360000B81352 /* iOS_MedManagerApp.swift in Sources */,
+				BE4475D02C1598E900ADDC59 /* PrescriptionResponse.swift in Sources */,
+				BE44761E2C16C34F00ADDC59 /* HomeMainView.swift in Sources */,
+				BE4476222C16C37C00ADDC59 /* PillRowView.swift in Sources */,
+				BE028FED2C1057E100B81352 /* ImagePicker.swift in Sources */,
+				BE028FE72C0FFFB500B81352 /* AzureAIViewModel.swift in Sources */,
+				BE4475CE2C1596E700ADDC59 /* AuthService.swift in Sources */,
+				BE4475C72C158C5100ADDC59 /* HexColor.swift in Sources */,
+				BE44761C2C16C15A00ADDC59 /* PillService.swift in Sources */,
+				BE028FE52C0FFEF900B81352 /* AzureAIModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,8 +416,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iOS-MedManager/Preview Content\"";
+				DEVELOPMENT_TEAM = L2NAN5CVVD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS-MedManager/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 접근";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -340,8 +448,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iOS-MedManager/Preview Content\"";
+				DEVELOPMENT_TEAM = L2NAN5CVVD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS-MedManager/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 접근";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -382,6 +494,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BE028FD52C0D592B00B81352 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BE028FD62C0D592B00B81352 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE028FD52C0D592B00B81352 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BE028FB52C0D360000B81352 /* Project object */;
 }
