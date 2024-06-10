@@ -129,10 +129,10 @@
 				D60E27082C0DA1CA00DA29B2 /* HomeMainView.swift */,
 				D60E27062C0DA18100DA29B2 /* HomeRowView.swift */,
 				D60E27162C0FED4A00DA29B2 /* PillAddView.swift */,
+				D60E271D2C1004AE00DA29B2 /* SelectCalenderView.swift */,
 				D60E271F2C1040E000DA29B2 /* PillReceiptView.swift */,
 				D60E27102C0DB49C00DA29B2 /* CalenderView.swift */,
 				D60E27142C0DE9D900DA29B2 /* CustomCalenderView.swift */,
-				D60E271D2C1004AE00DA29B2 /* SelectCalenderView.swift */,
 				D60E27272C10671100DA29B2 /* UserInfoView.swift */,
 			);
 			path = Views;

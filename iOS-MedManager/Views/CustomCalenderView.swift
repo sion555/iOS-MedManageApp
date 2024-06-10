@@ -10,6 +10,7 @@ import SwiftUI
 struct CustomCalenderView: View {
     @Binding var currentDate: Date
     @State var currentMonth: Int = 0
+    @State private var selectedDate: Date?
     let days = ["일", "월", "화", "수", "목", "금", "토"]
     let calendar = Calendar.current
     
