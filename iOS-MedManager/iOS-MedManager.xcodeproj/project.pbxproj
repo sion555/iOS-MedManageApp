@@ -30,6 +30,12 @@
 		BE44761E2C16C34F00ADDC59 /* HomeMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE44761D2C16C34F00ADDC59 /* HomeMainView.swift */; };
 		BE4476202C16C36B00ADDC59 /* HomeMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE44761F2C16C36B00ADDC59 /* HomeMainViewModel.swift */; };
 		BE4476222C16C37C00ADDC59 /* PillRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4476212C16C37C00ADDC59 /* PillRowView.swift */; };
+		BE4476242C17250D00ADDC59 /* ProgressCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4476232C17250D00ADDC59 /* ProgressCircleView.swift */; };
+		BE4476262C17255100ADDC59 /* PillSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4476252C17255100ADDC59 /* PillSectionView.swift */; };
+		BE4476282C1725A100ADDC59 /* AddPillButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4476272C1725A100ADDC59 /* AddPillButtonView.swift */; };
+		BE44762A2C1725ED00ADDC59 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4476292C1725ED00ADDC59 /* PopupView.swift */; };
+		BE44762C2C17266C00ADDC59 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE44762B2C17266C00ADDC59 /* HeaderView.swift */; };
+		BE44762F2C17E23900ADDC59 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE44762E2C17E23900ADDC59 /* DatePickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -70,6 +76,12 @@
 		BE44761D2C16C34F00ADDC59 /* HomeMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMainView.swift; sourceTree = "<group>"; };
 		BE44761F2C16C36B00ADDC59 /* HomeMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMainViewModel.swift; sourceTree = "<group>"; };
 		BE4476212C16C37C00ADDC59 /* PillRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillRowView.swift; sourceTree = "<group>"; };
+		BE4476232C17250D00ADDC59 /* ProgressCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircleView.swift; sourceTree = "<group>"; };
+		BE4476252C17255100ADDC59 /* PillSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillSectionView.swift; sourceTree = "<group>"; };
+		BE4476272C1725A100ADDC59 /* AddPillButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPillButtonView.swift; sourceTree = "<group>"; };
+		BE4476292C1725ED00ADDC59 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		BE44762B2C17266C00ADDC59 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		BE44762E2C17E23900ADDC59 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,10 +171,10 @@
 		BE028FD12C0D367300B81352 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BE44762D2C17268600ADDC59 /* HomeViews */,
 				BE4475CA2C158D7300ADDC59 /* AuthViews */,
 				BE028FE82C10037900B81352 /* AzureAITestView.swift */,
-				BE44761D2C16C34F00ADDC59 /* HomeMainView.swift */,
-				BE4476212C16C37C00ADDC59 /* PillRowView.swift */,
+				BE44762E2C17E23900ADDC59 /* DatePickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -184,6 +196,20 @@
 				BE4475C82C158D0400ADDC59 /* RegisterView.swift */,
 			);
 			path = AuthViews;
+			sourceTree = "<group>";
+		};
+		BE44762D2C17268600ADDC59 /* HomeViews */ = {
+			isa = PBXGroup;
+			children = (
+				BE44761D2C16C34F00ADDC59 /* HomeMainView.swift */,
+				BE4476212C16C37C00ADDC59 /* PillRowView.swift */,
+				BE4476232C17250D00ADDC59 /* ProgressCircleView.swift */,
+				BE4476252C17255100ADDC59 /* PillSectionView.swift */,
+				BE4476272C1725A100ADDC59 /* AddPillButtonView.swift */,
+				BE4476292C1725ED00ADDC59 /* PopupView.swift */,
+				BE44762B2C17266C00ADDC59 /* HeaderView.swift */,
+			);
+			path = HomeViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,14 +291,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE028FE92C10037900B81352 /* AzureAITestView.swift in Sources */,
+				BE44762F2C17E23900ADDC59 /* DatePickerView.swift in Sources */,
+				BE4476242C17250D00ADDC59 /* ProgressCircleView.swift in Sources */,
 				BE4475C32C15835900ADDC59 /* AuthViewModel.swift in Sources */,
 				BE4475C92C158D0400ADDC59 /* RegisterView.swift in Sources */,
 				BE028FC32C0D360000B81352 /* ContentView.swift in Sources */,
 				BE028FDD2C0EEBA000B81352 /* MedicineAPIModel.swift in Sources */,
 				BE028FDF2C0F18DD00B81352 /* AzureAIService.swift in Sources */,
+				BE44762C2C17266C00ADDC59 /* HeaderView.swift in Sources */,
 				BE4476202C16C36B00ADDC59 /* HomeMainViewModel.swift in Sources */,
 				BE4475C52C158A6200ADDC59 /* LoginView.swift in Sources */,
 				BE028FDB2C0D5CFC00B81352 /* AuthResponse.swift in Sources */,
+				BE4476262C17255100ADDC59 /* PillSectionView.swift in Sources */,
 				BE028FC12C0D360000B81352 /* iOS_MedManagerApp.swift in Sources */,
 				BE4475D02C1598E900ADDC59 /* PrescriptionResponse.swift in Sources */,
 				BE44761E2C16C34F00ADDC59 /* HomeMainView.swift in Sources */,
@@ -283,6 +313,8 @@
 				BE4475C72C158C5100ADDC59 /* HexColor.swift in Sources */,
 				BE44761C2C16C15A00ADDC59 /* PillService.swift in Sources */,
 				BE028FE52C0FFEF900B81352 /* AzureAIModel.swift in Sources */,
+				BE4476282C1725A100ADDC59 /* AddPillButtonView.swift in Sources */,
+				BE44762A2C1725ED00ADDC59 /* PopupView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

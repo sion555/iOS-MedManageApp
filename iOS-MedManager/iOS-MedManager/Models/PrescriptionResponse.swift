@@ -58,7 +58,8 @@ struct Receipts: Codable {
     let hospitalName: String?
 }
 
-struct Pills: Codable {
+struct Pills: Codable, Identifiable, Hashable {
+    let id: UUID = UUID()
     let pillID: Int
     let pillName: String
     let pillImage: String?
