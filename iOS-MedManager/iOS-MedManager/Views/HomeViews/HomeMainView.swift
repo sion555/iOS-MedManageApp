@@ -16,6 +16,7 @@ struct HomeMainView: View {
     @State private var isShowingPopup = false
     @State private var navigateToSearchView = false
     @State private var buttonFrame: CGRect = .zero
+    @State private var showingDatePicker = false
     
     var body: some View {
         NavigationStack {
@@ -48,7 +49,7 @@ struct HomeMainView: View {
                     
                     // Other Date Button
                     Button(action: {
-                        viewModel.showingDatePicker.toggle()
+                        showingDatePicker.toggle()
                     }) {
                         HStack {
                             Image(systemName: "calendar")
@@ -56,12 +57,6 @@ struct HomeMainView: View {
                             Text("다른 날짜 복약정보")
                                 .foregroundStyle(.blue)
                         }
-                    }
-                    .sheet(isPresented: $viewModel.showingDatePicker) {
-                        DatePickerView(selectedDate: $viewModel.selectedDate)
-                            .onDisappear {
-                                viewModel.fetchPrescriptions(for: viewModel.selectedDate)
-                            }
                     }
                     
                     // Pill Sections
@@ -167,9 +162,16 @@ struct HomeMainView: View {
             .navigationDestination(isPresented: $navigateToSearchView) {
                 //                SearchView()
             }
+            .sheet(isPresented: $showingDatePicker) {
+                DatePickerPopupView(selectedDate: $viewModel.selectedDate) { date in
+                    viewModel.fetchPrescriptions(for: date)
+                    showingDatePicker = false
+                }
+            }
         }
     }
 }
+    
 
 #Preview {
     HomeMainView()

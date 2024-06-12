@@ -36,6 +36,7 @@
 		BE44762A2C1725ED00ADDC59 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4476292C1725ED00ADDC59 /* PopupView.swift */; };
 		BE44762C2C17266C00ADDC59 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE44762B2C17266C00ADDC59 /* HeaderView.swift */; };
 		BE44762F2C17E23900ADDC59 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE44762E2C17E23900ADDC59 /* DatePickerView.swift */; };
+		BE4476312C19CA6600ADDC59 /* DatePickerPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4476302C19CA6600ADDC59 /* DatePickerPopupView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -82,6 +83,7 @@
 		BE4476292C1725ED00ADDC59 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		BE44762B2C17266C00ADDC59 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		BE44762E2C17E23900ADDC59 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		BE4476302C19CA6600ADDC59 /* DatePickerPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerPopupView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 				BE4475CA2C158D7300ADDC59 /* AuthViews */,
 				BE028FE82C10037900B81352 /* AzureAITestView.swift */,
 				BE44762E2C17E23900ADDC59 /* DatePickerView.swift */,
+				BE4476302C19CA6600ADDC59 /* DatePickerPopupView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE028FE92C10037900B81352 /* AzureAITestView.swift in Sources */,
+				BE4476312C19CA6600ADDC59 /* DatePickerPopupView.swift in Sources */,
 				BE44762F2C17E23900ADDC59 /* DatePickerView.swift in Sources */,
 				BE4476242C17250D00ADDC59 /* ProgressCircleView.swift in Sources */,
 				BE4475C32C15835900ADDC59 /* AuthViewModel.swift in Sources */,

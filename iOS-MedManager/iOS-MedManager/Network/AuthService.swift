@@ -62,6 +62,7 @@ class AuthService {
                 case .failure(let error):
                     completion(.failure(error))
                     print("AuthService의 signIn 메서드에서 문제 발생!")
+                    debugPrint(error)
             }
         }
     }
