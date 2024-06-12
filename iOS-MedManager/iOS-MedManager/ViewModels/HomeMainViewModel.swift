@@ -18,29 +18,34 @@ class HomeMainViewModel: ObservableObject {
     @Published var showingDatePicker = false
     @Published var selectedDate = Date()
     @Published var alertMessage: String = ""
+    @Published var showingAlert: Bool = false
 
     private var cancellables = Set<AnyCancellable>()
 
     init() {
-        fetchPrescriptions()
+        fetchPrescriptions(for: Date())
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy년 MM월 dd일"
         currentDate = dateFormatter.string(from: Date())
     }
 
-    func fetchPrescriptions() {
-        PillService.shared.fetchPrescriptions { [weak self] result in
+    func fetchPrescriptions(for date: Date) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateString = dateFormatter.string(from: date)
+        
+        PillService.shared.fetchPrescriptions(for: dateString) { [weak self] result in
             switch result {
             case .success(let prescriptions):
                 DispatchQueue.main.async {
-                    self?.totalPills = prescriptions.flatMap { $0.pills ?? [] }.count
-                    self?.morningPills = prescriptions.flatMap { $0.pills ?? [] }.filter { $0.doseTime == "morning" }
-                    self?.afternoonPills = prescriptions.flatMap { $0.pills ?? [] }.filter { $0.doseTime == "afternoon" }
-                    self?.eveningPills = prescriptions.flatMap { $0.pills ?? [] }.filter { $0.doseTime == "evening" }
+                    let pills = prescriptions.flatMap { $0.pills ?? [] }
+                    self?.totalPills = pills.count
+                    self?.morningPills = pills.filter { $0.morning }
+                    self?.afternoonPills = pills.filter { $0.afternoon }
+                    self?.eveningPills = pills.filter { $0.evening }
                     self?.updateProgress()
                 }
             case .failure(let error):
-                print(error.localizedDescription)
                 DispatchQueue.main.async {
                     self?.alertMessage = error.localizedDescription
                     self?.showingAlert = true
@@ -64,11 +69,9 @@ class HomeMainViewModel: ObservableObject {
 
     private func updateProgress() {
         let totalTaken = morningPills.filter { $0.isTaken }.count + afternoonPills.filter { $0.isTaken }.count + eveningPills.filter { $0.isTaken }.count
-        let totalPillsCount = totalPills
-        progress = Double(totalTaken) / Double(totalPillsCount)
+        progress = Double(totalTaken) / Double(totalPills)
     }
 }
-
 
 
 

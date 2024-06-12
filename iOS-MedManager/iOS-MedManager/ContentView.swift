@@ -13,7 +13,13 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             if isLoggedIn {
-                HomeMainView()
+                TabView {
+                    HomeMainView()
+                        .tabItem {
+                            Image(systemName: "house.fill")
+                            Text("홈")
+                        }
+                }
             } else {
                 LoginView(isLoggedIn: $isLoggedIn)
             }

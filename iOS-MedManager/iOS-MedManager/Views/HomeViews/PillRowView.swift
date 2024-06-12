@@ -29,23 +29,24 @@ struct PillRowView: View {
 
 
 
-let samplePill = Pills(
-    pillID: 1,
-    pillName: "Sample Pill",
-    pillImage: "image1.jpg",
-    pillDescription: "Sample Description",
-    pillType: "Sample Type",
-    storageMethod: "Room Temperature",
-    medicineEffect: "Sample Effect",
-    prescriptionID: 1,
-    doseTime: "morning",
-    instruction: Instruction(
-        instructionID: 1,
-        prescriptionID: 1,
-        pillID: 1,
-        instruction: "Sample Instruction"
-    )
-)
+
+//let samplePill = Pills(
+//    pillID: 1,
+//    pillName: "Sample Pill",
+//    pillImage: "image1.jpg",
+//    pillDescription: "Sample Description",
+//    pillType: "Sample Type",
+//    storageMethod: "Room Temperature",
+//    medicineEffect: "Sample Effect",
+//    prescriptionID: 1,
+//    doseTime: "morning",
+//    instruction: Instruction(
+//        instructionID: 1,
+//        prescriptionID: 1,
+//        pillID: 1,
+//        instruction: "Sample Instruction"
+//    )
+//)
 
 //#Preview {
 //    PillRowView(pill: samplePill)

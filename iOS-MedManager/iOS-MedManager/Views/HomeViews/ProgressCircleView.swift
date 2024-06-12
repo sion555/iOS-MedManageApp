@@ -13,15 +13,15 @@ struct ProgressCircleView: View {
     var body: some View {
         Circle()
             .trim(from: 0.0, to: progress)
-            .stroke(lineWidth: 10)
+            .stroke(lineWidth: 5)
             .foregroundStyle(progress == 1.0 ? .green : .blue)
             .frame(width: 100, height: 100)
             .overlay(
                 Text("\(Int(progress * 100))%")
-                    .font(.title)
+                    .font(.title2)
                     .foregroundStyle(progress == 1.0 ? .green : .blue)
             )
-            .rotationEffect(Angle(degrees: -90))
+            .rotationEffect(Angle(degrees: 0))
             .animation(.easeInOut(duration: 1.0), value: progress)
     }
 }

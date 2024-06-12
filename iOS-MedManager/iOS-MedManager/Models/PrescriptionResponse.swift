@@ -1,37 +1,39 @@
-//
-//  PrescriptionResponse.swift
-//  iOS-MedManager
-//
-//  Created by 한범석 on 6/9/24.
-//
+// PrescriptionResponse.swift
+// iOS-MedManager
+// Created by 한범석 on 6/9/24.
 
 import Foundation
 
+// iOS2차프로젝트_YakTokTok_BE Postman 명세 참조 !! 하세요 !! - 범석
 
+// YakTokDB-GetPrescription 의 응답 모델링!
 struct PrescriptionResponse: Codable {
     let success: Bool
     let prescriptions: [Prescriptions]?
     let message: String
 }
 
+// YakTokDB-GetPrescription-PreID 의 응답 모델링!
 struct PrescriptionIDResponse: Codable {
     let success: Bool
     let prescription: [Prescriptions]?
     let message: String
 }
 
+// YakTokDB-GetPills-DoseTime 의 응답 모델링!
 struct PillDoseTimeResponse: Codable {
     let success: Bool
     let pills: [Pills]?
     let message: String
 }
 
+// YakTokDB-GetPrescription 의 응답 모델링!
 struct Prescriptions: Codable {
-    let prescriptionID: Int?
+    let prescriptionID: Int
     let userID: String
     let hospitalName: String?
-    let prescriptionStartDate: Date?
-    let prescriptionEndDate: Date?
+    let prescriptionStartDate: String
+    let prescriptionEndDate: String
     let pills: [Pills]?
     let receipts: [Receipts]?
     
@@ -46,18 +48,21 @@ struct Prescriptions: Codable {
     }
 }
 
+// YakTokDB-GetReceipt 응답 모델링!
 struct Receipts: Codable {
-    let receiptID: Int?
-    let prescriptionID: Int?
+    let receiptID: Int
+    let prescriptionID: Int
     let receiptNumber: String?
     let totalPillExpense: Double?
     let personalExpense: Double?
     let insuranceExpense: Double?
     let totalPayment: Double?
     let pharmacyName: String?
-    let hospitalName: String?
+    let hospitalName: String
+    let dispensingDate: String?
 }
 
+// 각 응답마다 들어있는 Pills 혹은 pills 모델링!
 struct Pills: Codable, Identifiable, Hashable {
     let id: UUID = UUID()
     let pillID: Int
@@ -68,8 +73,10 @@ struct Pills: Codable, Identifiable, Hashable {
     let storageMethod: String?
     let medicineEffect: String?
     let prescriptionID: Int
-    let doseTime: String?
-    let instruction: Instruction?
+    let morning: Bool
+    let afternoon: Bool
+    let evening: Bool
+    let instruction: Double
     var isTaken: Bool = false
     
     enum CodingKeys: String, CodingKey {
@@ -81,8 +88,10 @@ struct Pills: Codable, Identifiable, Hashable {
         case storageMethod
         case medicineEffect
         case prescriptionID
-        case doseTime
-        case instruction = "Instruction"
+        case morning
+        case afternoon
+        case evening
+        case instruction
     }
     
     static func == (lhs: Pills, rhs: Pills) -> Bool {
@@ -94,10 +103,17 @@ struct Pills: Codable, Identifiable, Hashable {
     }
 }
 
+// 지금은 일단 필요없는 모델링입니다~ (요청 메서드 변경으로 현재 사용 X)
 struct Instruction: Codable {
     let instructionID: Int
     let prescriptionID: Int
     let pillID: Int
     let instruction: String
+    
+    enum CodingKeys: String, CodingKey {
+        case instructionID = "instructionID"
+        case prescriptionID = "prescriptionID"
+        case pillID = "pillID"
+        case instruction = "instruction"
+    }
 }
-
