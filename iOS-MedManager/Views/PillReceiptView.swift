@@ -7,22 +7,13 @@
 
 import SwiftUI
 
-struct Receipt {
-    var hospitalName : String = "" //병원이름
-    var personalExpense : Int = 0 //개인부담금
-    var insuranceExpense : Int = 0 //보험자부담금
-    var totalAmount : Int = 0 //총수납금액
-}
-
 struct PillReceiptView: View {
-    
-    let samplerReceiptData = Receipt(hospitalName: "좋은병원", personalExpense: 3000, insuranceExpense: 8000, totalAmount: 3000)
     
     var body: some View {
         List {
             VStack {
-            Spacer()
-                Text(samplerReceiptData.hospitalName)
+                Spacer()
+                Text("좋은약국")
                     .font(.title)
                     .bold()
                     .foregroundStyle(.blue)
@@ -57,7 +48,7 @@ struct PillReceiptView: View {
                         .foregroundStyle(.secondary)
                         .bold()
                     Spacer()
-                    Text("\(samplerReceiptData.personalExpense)원")
+                    Text("4,000원")
                     
                 }.padding()
                 HStack {
@@ -65,7 +56,7 @@ struct PillReceiptView: View {
                         .foregroundStyle(.secondary)
                         .bold()
                     Spacer()
-                    Text("\(samplerReceiptData.insuranceExpense)원")
+                    Text("8,000원")
                 }.padding()
                 
                 HStack {
@@ -82,16 +73,14 @@ struct PillReceiptView: View {
                         .foregroundStyle(.selection)
                         .bold()
                     Spacer()
-                    Text("\(samplerReceiptData.totalAmount)원")
+                    Text("4,000원")
                 }
                 .padding()
                 .font(.title2)
                 Spacer()
             }
         }
-       
         
-       
     }
 }
 

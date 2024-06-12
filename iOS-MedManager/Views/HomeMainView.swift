@@ -36,6 +36,11 @@ struct HomeMainView: View {
     // 약 추가 버튼 팝업창 변수
     @State private var showingPopup = false
     
+    //플로팅 버튼 숨기긱 드러내기
+    @State private var scrollOffset: CGFloat = 0
+    @State private var previousScrollOffset: CGFloat = 0
+    @State private var isFloatingButtonVisible = true
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -91,6 +96,9 @@ struct HomeMainView: View {
                         currentDate = Calendar.current.date(byAdding: .day, value: -1, to: currentDate) ?? currentDate
                     }, label: {
                         Image(systemName: "chevron.left.circle")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .foregroundStyle(.gray)
                     })
                     Spacer()
                     Text(dateString)
@@ -102,30 +110,57 @@ struct HomeMainView: View {
                         currentDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate) ?? currentDate
                     }, label: {
                         Image(systemName: "chevron.right.circle")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .foregroundStyle(.gray)
                     })
                 }
-                .padding(.horizontal)
-                
-                // 영수증 내역 확인, 선택 시 영수증 뷰로 모달 뷰가 표시됨
-                HStack {
-                    Spacer()
-                    Text("영수증 확인")
-                        .frame(width: 80, height: 5)
-                        .padding()
-                        .foregroundStyle(.white)
-                        .background(.blue)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .onTapGesture { isReceiptViewPresented = true }
-                        .sheet(isPresented: $isReceiptViewPresented) {
-                            PillReceiptView()
-                        }
-                        .padding(.horizontal)
-                }
+                .padding(.horizontal, 20)
                 
                 VStack {
+                    // 영수증 내역 확인, 선택 시 영수증 뷰로 모달 뷰가 표시됨
+                    HStack {
+                        Text("병원 이름")
+                            .frame(width: 160, height: 5)
+                            .padding()
+                            .foregroundStyle(.blue)
+                            .background(.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.blue, lineWidth: 2)
+                            )
+                            
+                        //Spacer()
+                        Text("영수증 확인")
+                            .frame(width: 80, height: 5)
+                            .padding()
+                            .foregroundStyle(.white)
+                            .background(.blue)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .onTapGesture { isReceiptViewPresented = true }
+                            .sheet(isPresented: $isReceiptViewPresented) {
+                                PillReceiptView()
+                            }
+                            .padding(.horizontal)
+                    }
                     Spacer()
                     // 약 추가 플로팅 버튼
                     ZStack(alignment: .bottomTrailing) {
+                        // Scroll tracking
+                                       GeometryReader { geo -> Color in
+                                           DispatchQueue.main.async {
+                                               let offset = geo.frame(in: .global).minY
+                                               if offset < previousScrollOffset {
+                                                   isFloatingButtonVisible = false
+                                               } else if offset > previousScrollOffset {
+                                                   isFloatingButtonVisible = true
+                                               }
+                                               previousScrollOffset = offset
+                                           }
+                                           return Color.clear
+                                       }
+                        
                         HomeRowView()
                         
                         Button(action: {
@@ -135,14 +170,14 @@ struct HomeMainView: View {
                         }) {
                             HStack {
                                 Image(systemName: showingPopup ? "xmark.circle.fill" : "pills")
-                                    .font(.title)
+                                    .font(.title2)
                                 Text(showingPopup ? "취소" : "약 추가")
                                     .font(.title3)
                             }
                             .padding()
                             .background(Color.blue)
                             .foregroundColor(.white)
-                            .cornerRadius(10)
+                            .cornerRadius(30)
                         }
                         .padding()
                         
@@ -181,7 +216,7 @@ struct HomeMainView: View {
                                 Spacer()
                             }
                             // 팝업 창 위치 조정 및 취소 버튼 선택 시 팝업창이 사라짐
-                            .padding(.top, 200)
+                            .padding(.top, 210)
                             .background(Color.clear)
                             .onTapGesture {
                                 withAnimation {

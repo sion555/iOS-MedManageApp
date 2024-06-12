@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct PillAddView: View {
-    let pillNumSelect = ["1정씩", "2정씩", "3정씩", "4정씩", "5정씩", "6정씩", "7정씩", "8정씩", "9정씩", "10정씩"]
-    @State private var selectedNum = ""
     
     //DateInterval
     //양 방향 바인딩을 위한 DateInterval객체 바인딩
@@ -23,154 +21,111 @@ struct PillAddView: View {
     func updateDateInterval() {
         dateInterval = DateInterval(start: startDate, end: endDate)
     }
+    //추가하기 버튼을 통해 영수증 추가 뷰와 연결
+    @State var addReceipt = false
     
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                Text("복약 기간과 시간을")
-                Text("설정해주세요")
-            }
-            .font(.title)
-            .padding()
-            
-            Divider()
-                .frame(height: 5)
-                .background(Color.secondary)
-            
-            HStack {
-                Text("복약 기간 설정")
-                    .font(.title2)
-                    .bold()
-                    .foregroundStyle(.secondary)
-                    .padding(.trailing)
                 Spacer()
+                Text("복약 기간과 시간을")
+                    .font(.title)
+                    .padding(.horizontal, 30)
+                Text("설정해주세요")
+                    .font(.title)
+                    .padding(.horizontal, 30)
+                    .padding(.bottom, 20)
                 
-                VStack {
+                Divider()
+                    .frame(height: 5)
+                    .background(Color.secondary)
+                
+                
                     HStack {
-                        Button(action: { isStartDatePicker.toggle()}) {
-                            Text("시작 날짜")
-                        }
-                        if isStartDatePicker {
-                            DatePicker("", selection: $startDate, displayedComponents: .date)
-                                .datePickerStyle(.automatic)
-                                .padding()
-                        }
-                    }
-                    
-                    HStack {
-                        Button(action: { isEndDatePicker.toggle()}) {
-                            Text("종료 날짜")
-                        }
-                        if isEndDatePicker {
-                            DatePicker("", selection: $endDate,
-                                       displayedComponents: .date)
-                            .datePickerStyle(.automatic)
-                        }
+                        Text("복약 기간 설정")
+                            .font(.title2)
+                            .bold()
+                            .foregroundStyle(.secondary)
+                            
+                        Spacer()
+                        
+                        // 복용 기간 설정
+                    VStack {
+                        HStack {
+                            Button(action: {
+                                isStartDatePicker.toggle()
+                            }) {
+                                Text("시작 날짜")
+                            }
+                            if isStartDatePicker {
+                                DatePicker("", selection: $startDate,
+                                           displayedComponents: .date)
+                                .datePickerStyle(.compact)
+                            }
+                        }.frame(width: 110)
+                        
+                        HStack {
+                            Button(action: {
+                                isEndDatePicker.toggle()
+                            }) {
+                                Text("종료 날짜")
+                            }
+                            if isEndDatePicker {
+                                DatePicker("", selection: $endDate,
+                                           displayedComponents: .date)
+                                .datePickerStyle(.compact)
+                                
+                            }
+                        }.frame(width: 100)
                     }
                 }
-            }
-            .padding()
-            .padding(.horizontal, 30)
-            
-            Divider()
-                .frame(height: 5)
-                .background(Color.secondary)
-            List {
-                Section {
-                    Text("추가된 약")
-                        .font(.title3)
-                        .fontWeight(.medium)
-                        .listRowSeparator(.hidden)
-                    
-                    HStack(alignment: .top) {
-                        Image("약톡톡 고양이메인캐릭터")
-                            .resizable()
-                            .frame(width: 80, height: 30)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                        
-                        VStack(alignment: .leading) {
-                            Text("크래빅스정")
-                                .fontWeight(.semibold)
-                            
-                            Text("[마크로라이트계 항생제]")
-                                .foregroundStyle(.secondary)
-                                .lineLimit(1)
-                                .fixedSize(horizontal: true, vertical: false)
-                            
-                            HStack {
-                                Button(action: {}, label: {
-                                    Text("아침")
-                                        .font(.footnote)
-                                        .frame(width: 40, height: 20)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 30)
-                                                .stroke(Color.blue, lineWidth: 2)
-                                        )
-                                })
-                                Button(action: {}, label: {
-                                    Text("점심")
-                                        .font(.footnote)
-                                        .frame(width: 40, height: 20)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 30)
-                                                .stroke(Color.blue, lineWidth: 2)
-                                        )
-                                })
-                                Button(action: {}, label: {
-                                    Text("저녁")
-                                        .font(.footnote)
-                                        .frame(width: 40, height: 20)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 30)
-                                                .stroke(Color.blue, lineWidth: 2)
-                                        )
-                                })
-                            }
-                        }
-                        
-                        //picker
-                        Picker("", selection: $selectedNum) {
-                            ForEach(pillNumSelect, id: \.self) {
-                                Text($0)
-                                    .font(.subheadline)
-                                    .foregroundStyle(.primary)
-                            }
-                        }
-                        .pickerStyle(.automatic)
-                    }
-                }.listRowSeparator(.hidden)
-                
-            }
-            .listStyle(PlainListStyle())
-            
-            HStack {
-                Button(action: {}, label: {
-                    Text("취소")
-                        .font(.title2)
-                        .frame(width: 80)
-                        .padding()
-                        .foregroundStyle(.white)
-                        .background(.gray)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                    
-                })
                 .padding()
-                Button(action: {}, label: {
-                    Text("추가하기")
-                        .font(.title2)
-                        .frame(width: 150)
-                        .padding()
-                        .foregroundStyle(.white)
-                        .background(.blue)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                })
+                .padding(.horizontal, 30)
+
                 
+                Divider()
+                    .frame(height: 5)
+                    .background(Color.secondary)
+                
+                //약 추가 Row 가져옴
+                PillAddRowView()
+                
+                
+                HStack {
+                    Button(action: {
+                        
+                    }, label: {
+                        Text("취소")
+                            .font(.title2)
+                            .bold()
+                            .frame(width: 90)
+                            .padding()
+                            .foregroundStyle(.white)
+                            .background(.separator)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    })
+                    .padding()
+                    NavigationLink {
+                        PillAddReceiptView()
+                    } label: {
+                        Text("추가하기")
+                              .font(.title2)
+                              .bold()
+                              .frame(width: 150)
+                              .padding()
+                              .foregroundStyle(.white)
+                              .background(.blue)
+                              .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
+
+                }
+                .padding()
             }
-            .padding()
         }
+        .navigationBarItems(trailing: Image(systemName: "plus")
+            .foregroundStyle(.blue))
         .navigationTitle("약 추가")
-        .navigationBarItems(trailing: Image(systemName: "plus"))
-        
+        .toolbarBackground(Color.gray, for: .navigationBar)
     }
 }
    

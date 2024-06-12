@@ -37,14 +37,14 @@ extension Date {
     
     //현재 날짜의 월의 끝 날짜를 반환하는 메서드
     func endOfMonth() -> Date {
-            let calendar = Calendar.current
-            
-            // 다음 달의 시작 날짜를 계산합니다.
-            let startOfNextMonth = calendar.date(byAdding: DateComponents(month: 1), to: startOfMonth())!
-            
-            // 다음 달의 시작 날짜에서 1초를 빼서 현재 달의 마지막 날짜를 계산합니다.
-            return calendar.date(byAdding: DateComponents(second: -1), to: startOfNextMonth)!
-        }
+        let calendar = Calendar.current
+        
+        // 다음 달의 시작 날짜를 계산합니다.
+        let startOfNextMonth = calendar.date(byAdding: DateComponents(month: 1), to: startOfMonth())!
+        
+        // 다음 달의 시작 날짜에서 1초를 빼서 현재 달의 마지막 날짜를 계산합니다.
+        return calendar.date(byAdding: DateComponents(second: -1), to: startOfNextMonth)!
+    }
 }
 
 

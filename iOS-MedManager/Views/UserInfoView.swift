@@ -49,10 +49,11 @@ struct UserInfoView: View {
                             Divider()
                                 .frame(width: 2, height: 30)
                                 .background(.white)
-                                
-                            Button(action: {}, label: {
+                            
+                            NavigationLink(destination: UserHealthInfoView()) {
                                 Text("특이사항")
-                            })
+                            }
+            
                             Divider()
                                 .frame(width: 2, height: 30)
                                 .background(.white)
