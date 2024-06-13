@@ -27,6 +27,8 @@
 		D60E272A2C16E29D00DA29B2 /* PillAddRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60E27292C16E29D00DA29B2 /* PillAddRowView.swift */; };
 		D60E272C2C17E4A400DA29B2 /* PillAddReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60E272B2C17E4A400DA29B2 /* PillAddReceiptView.swift */; };
 		D60E272E2C194AE000DA29B2 /* UserHealthInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60E272D2C194AE000DA29B2 /* UserHealthInfoView.swift */; };
+		D6103C0D2C1A7817004F102D /* PhotographView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6103C0C2C1A7817004F102D /* PhotographView.swift */; };
+		D6103C0F2C1A7BB4004F102D /* OpenSourceLicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6103C0E2C1A7BB4004F102D /* OpenSourceLicenseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		D60E27292C16E29D00DA29B2 /* PillAddRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillAddRowView.swift; sourceTree = "<group>"; };
 		D60E272B2C17E4A400DA29B2 /* PillAddReceiptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillAddReceiptView.swift; sourceTree = "<group>"; };
 		D60E272D2C194AE000DA29B2 /* UserHealthInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHealthInfoView.swift; sourceTree = "<group>"; };
+		D6103C0C2C1A7817004F102D /* PhotographView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotographView.swift; sourceTree = "<group>"; };
+		D6103C0E2C1A7BB4004F102D /* OpenSourceLicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceLicenseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +138,7 @@
 				D60E26F92C0D547D00DA29B2 /* MainView.swift */,
 				D60E27082C0DA1CA00DA29B2 /* HomeMainView.swift */,
 				D60E27062C0DA18100DA29B2 /* HomeRowView.swift */,
+				D6103C0C2C1A7817004F102D /* PhotographView.swift */,
 				D60E27162C0FED4A00DA29B2 /* PillAddView.swift */,
 				D60E27292C16E29D00DA29B2 /* PillAddRowView.swift */,
 				D60E271D2C1004AE00DA29B2 /* SelectCalenderView.swift */,
@@ -143,6 +148,7 @@
 				D60E27142C0DE9D900DA29B2 /* CustomCalenderView.swift */,
 				D60E27272C10671100DA29B2 /* UserInfoView.swift */,
 				D60E272D2C194AE000DA29B2 /* UserHealthInfoView.swift */,
+				D6103C0E2C1A7BB4004F102D /* OpenSourceLicenseView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -230,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6103C0F2C1A7BB4004F102D /* OpenSourceLicenseView.swift in Sources */,
 				D60E272E2C194AE000DA29B2 /* UserHealthInfoView.swift in Sources */,
 				D60E271E2C1004AE00DA29B2 /* SelectCalenderView.swift in Sources */,
 				D60E270F2C0DB2F400DA29B2 /* CalenderModel.swift in Sources */,
@@ -246,6 +253,7 @@
 				BE028FC12C0D360000B81352 /* iOS_MedManagerApp.swift in Sources */,
 				D60E27152C0DE9D900DA29B2 /* CustomCalenderView.swift in Sources */,
 				D60E272A2C16E29D00DA29B2 /* PillAddRowView.swift in Sources */,
+				D6103C0D2C1A7817004F102D /* PhotographView.swift in Sources */,
 				D60E27172C0FED4A00DA29B2 /* PillAddView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
