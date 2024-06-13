@@ -9,6 +9,10 @@ import Foundation
 import Alamofire
 import SwiftUI
 
+
+let baseURL = "https://yaktoktok.azurewebsites.net"
+
+
 class AuthService {
     
     static let shared = AuthService()
@@ -24,7 +28,7 @@ class AuthService {
             "password": password
         ]
         
-        AF.request("http://localhost:3000/members/sign-up", method: .post, parameters: params, encoding: JSONEncoding.default).responseDecodable(of: SignUpResponse.self) { response in
+        AF.request("\(baseURL)/members/sign-up", method: .post, parameters: params, encoding: JSONEncoding.default).responseDecodable(of: SignUpResponse.self) { response in
             switch response.result {
                 case .success(let signUpResponse):
                     if signUpResponse.success {
@@ -48,7 +52,7 @@ class AuthService {
             "password": password
         ]
         
-        AF.request("http://localhost:3000/members/sign-in", method: .post, parameters: params, encoding: JSONEncoding.default).responseDecodable(of: SignInResponse.self) { response in
+        AF.request("\(baseURL)/members/sign-in", method: .post, parameters: params, encoding: JSONEncoding.default).responseDecodable(of: SignInResponse.self) { response in
             print(response)
             switch response.result {
                 case .success(let loginResponse):

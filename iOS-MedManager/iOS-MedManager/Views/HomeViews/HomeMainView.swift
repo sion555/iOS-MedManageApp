@@ -14,10 +14,17 @@ struct HomeMainView: View {
     @State private var isAfternoonExpanded = false
     @State private var isEveningExpanded = false
     @State private var isShowingPopup = false
-    @State private var navigateToSearchView = false
-    @State private var buttonFrame: CGRect = .zero
     @State private var showingDatePicker = false
-    
+    @State private var showingCameraView = false
+    @State private var showingImageReviewView = false
+    @State private var showingLoadingView = false
+    @State private var showingConfirmationView = false
+    @State private var showingInstructionView = false
+    @State private var selectedImage: UIImage?
+    @State private var isUploading = false
+    @StateObject private var aiViewModel = AzureDocumentIntelligenceViewModel()
+    @State private var buttonFrame: CGRect = .zero
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -49,7 +56,9 @@ struct HomeMainView: View {
                     
                     // Other Date Button
                     Button(action: {
-                        showingDatePicker.toggle()
+                        withAnimation(.easeInOut) {
+                            showingDatePicker.toggle()
+                        }
                     }) {
                         HStack {
                             Image(systemName: "calendar")
@@ -76,6 +85,64 @@ struct HomeMainView: View {
                 }
                 .padding()
                 
+                // Date Picker Popup
+                if showingDatePicker {
+                    VStack {
+                        Spacer()
+                        
+                        VStack(spacing: 20) {
+                            DatePicker("Select a date", selection: $viewModel.selectedDate, displayedComponents: .date)
+                                .datePickerStyle(GraphicalDatePickerStyle())
+                            
+                            Button("완료") {
+                                viewModel.fetchPrescriptions(for: viewModel.selectedDate)
+                                withAnimation(.easeInOut) {
+                                    showingDatePicker = false
+                                }
+                            }
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            
+                        }
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .shadow(radius: 10)
+                        .padding(.bottom, 40)
+                        .frame(maxWidth: .infinity)
+                        Spacer()
+                    }
+                    .transition(.scale)
+                }
+                
+                // 약 추가 버튼
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            withAnimation(.easeInOut) {
+                                isShowingPopup.toggle()
+                            }
+                        }) {
+                            HStack {
+                                Image(systemName: isShowingPopup ? "xmark.circle.fill" : "plus.circle.fill")
+                                    .font(.title)
+                                Text(isShowingPopup ? "취소" : "약 추가")
+                                    .font(.title3)
+                            }
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(30)
+                        }
+                        .padding(.bottom, 20)
+                        .padding(.trailing, 10)
+                    }
+                }
+                
                 // 팝업 창 부분
                 if isShowingPopup {
                     Color.black.opacity(0.4)
@@ -92,21 +159,14 @@ struct HomeMainView: View {
                         HStack {
                             Spacer()
                             VStack(spacing: 20) {
-                                Button(action: {
-                                    // 약 봉투
-                                    isShowingPopup = false
-                                }) {
+                                NavigationLink(destination: InstructionView(isPresented: $showingCameraView, selectedImage: $selectedImage)) {
                                     HStack {
                                         Image(systemName: "camera")
                                         Text("약 봉투 촬영")
                                     }
                                 }
                                 
-                                Button(action: {
-                                    // 직접 입력
-                                    isShowingPopup = false
-                                    navigateToSearchView = true
-                                }) {
+                                NavigationLink(destination: Text("SearchView는 만드는 중입니다")) {
                                     HStack {
                                         Image(systemName: "pencil")
                                         Text("직접 입력")
@@ -124,58 +184,47 @@ struct HomeMainView: View {
                     }
                     .padding(.bottom, buttonFrame.height + 20) // 버튼의 높이만큼 공간 확보
                 }
-                
-                // 약 추가 버튼
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        Button(action: {
-                            withAnimation {
-                                isShowingPopup.toggle()
-                            }
-                        }) {
-                            HStack {
-                                Image(systemName: isShowingPopup ? "xmark.circle.fill" : "plus.circle.fill")
-                                    .font(.title)
-                                Text(isShowingPopup ? "취소" : "약 추가")
-                                    .font(.title3)
-                            }
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(30)
+            }
+            .navigationDestination(isPresented: $showingCameraView) {
+                CameraView(image: $selectedImage)
+                    .onDisappear {
+                        if selectedImage != nil {
+                            showingImageReviewView = true
                         }
-                        .padding(.bottom, 20)
-                        .padding(.trailing, 10)
-                        .background(
-                            GeometryReader { geometry -> Color in
-                                DispatchQueue.main.async {
-                                    self.buttonFrame = geometry.frame(in: .global)
-                                }
-                                return Color.clear
-                            }
-                        )
                     }
-                }
             }
-            .navigationDestination(isPresented: $navigateToSearchView) {
-                //                SearchView()
+            .navigationDestination(isPresented: $showingImageReviewView) {
+                ImageReviewView(isPresented: $showingImageReviewView, selectedImage: $selectedImage)
             }
-            .sheet(isPresented: $showingDatePicker) {
-                DatePickerPopupView(selectedDate: $viewModel.selectedDate) { date in
-                    viewModel.fetchPrescriptions(for: date)
-                    showingDatePicker = false
-                }
+            .navigationDestination(isPresented: $showingLoadingView) {
+                LoadingView(isPresented: $showingLoadingView, aiViewModel: aiViewModel)
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            showingLoadingView = false
+                            if aiViewModel.result != "" {
+                                showingConfirmationView = true
+                            } else {
+                                showingImageReviewView = true
+                            }
+                        }
+                    }
+            }
+            .navigationDestination(isPresented: $showingConfirmationView) {
+                ConfirmationView(isPresented: $showingConfirmationView, pillName: aiViewModel.result, pillType: aiViewModel.result, instruction: aiViewModel.result)
             }
         }
     }
 }
-    
 
 #Preview {
     HomeMainView()
 }
+
+
+
+
+
+
 
 
 

@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var isLoggedIn = false
+    @State private var isLoggedIn = true
+    @State var isPresented: Bool = false
+    @State private var image: UIImage?
     
     var body: some View {
         NavigationStack {
@@ -19,6 +21,11 @@ struct ContentView: View {
                             Image(systemName: "house.fill")
                             Text("홈")
                         }
+                    InstructionView(isPresented: $isPresented, selectedImage: $image)
+                        .tabItem {
+                            Image(systemName: "house.fill")
+                            Text("instructionTest")
+                        }
                 }
             } else {
                 LoginView(isLoggedIn: $isLoggedIn)
@@ -27,6 +34,6 @@ struct ContentView: View {
     }
 }
 
-#Preview {
-    ContentView()
-}
+//#Preview {
+//    ContentView(image: .constant())
+//}

@@ -51,6 +51,7 @@ struct ProgressCircleView: View {
     }
 }
 
+
 #Preview {
     ProgressCircleView(progress: .constant(0.5))
 }

@@ -8,6 +8,8 @@
 import Foundation
 import Alamofire
 
+
+
 class PillService {
     
     static let shared = PillService()
@@ -23,7 +25,9 @@ class PillService {
             "Authorization": "Bearer \(token)"
         ]
         
-        AF.request("http://localhost:3000/prescription/date/\(date)", method: .get, headers: headers).responseDecodable(of: PrescriptionResponse.self) { response in
+        AF.request("\(baseURL)/prescription/date/\(date)", method: .get, headers: headers).responseDecodable(of: PrescriptionResponse.self) { response in
+            print(date)
+            print(response)
             switch response.result {
             case .success(let prescriptionResponse):
                 if prescriptionResponse.success, let prescriptions = prescriptionResponse.prescriptions {

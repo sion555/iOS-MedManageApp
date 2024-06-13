@@ -58,27 +58,22 @@ class HomeMainViewModel: ObservableObject {
     func togglePill(pill: Pills) {
         if let index = morningPills.firstIndex(where: { $0.id == pill.id }) {
             morningPills[index].isTaken.toggle()
-            updateProgress()
-            return
         }
         if let index = afternoonPills.firstIndex(where: { $0.id == pill.id }) {
             afternoonPills[index].isTaken.toggle()
-            updateProgress()
-            return
         }
         if let index = eveningPills.firstIndex(where: { $0.id == pill.id }) {
             eveningPills[index].isTaken.toggle()
-            updateProgress()
-            return
         }
+        updateProgress()
     }
-
 
     private func updateProgress() {
         let totalTaken = morningPills.filter { $0.isTaken }.count + afternoonPills.filter { $0.isTaken }.count + eveningPills.filter { $0.isTaken }.count
         progress = Double(totalTaken) / Double(totalPills)
     }
 }
+
 
 
 

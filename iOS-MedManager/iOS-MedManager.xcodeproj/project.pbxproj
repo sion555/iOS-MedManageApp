@@ -37,6 +37,11 @@
 		BE44762C2C17266C00ADDC59 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE44762B2C17266C00ADDC59 /* HeaderView.swift */; };
 		BE44762F2C17E23900ADDC59 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE44762E2C17E23900ADDC59 /* DatePickerView.swift */; };
 		BE4476312C19CA6600ADDC59 /* DatePickerPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4476302C19CA6600ADDC59 /* DatePickerPopupView.swift */; };
+		BE4476342C1A347C00ADDC59 /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4476332C1A347C00ADDC59 /* InstructionView.swift */; };
+		BE4476362C1A349A00ADDC59 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4476352C1A349A00ADDC59 /* CameraView.swift */; };
+		BE4476382C1A34BE00ADDC59 /* ImageReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4476372C1A34BE00ADDC59 /* ImageReviewView.swift */; };
+		BE44763A2C1A34DB00ADDC59 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4476392C1A34DB00ADDC59 /* LoadingView.swift */; };
+		BE44763C2C1A351200ADDC59 /* ConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE44763B2C1A351200ADDC59 /* ConfirmationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -84,6 +89,11 @@
 		BE44762B2C17266C00ADDC59 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		BE44762E2C17E23900ADDC59 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		BE4476302C19CA6600ADDC59 /* DatePickerPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerPopupView.swift; sourceTree = "<group>"; };
+		BE4476332C1A347C00ADDC59 /* InstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
+		BE4476352C1A349A00ADDC59 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		BE4476372C1A34BE00ADDC59 /* ImageReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageReviewView.swift; sourceTree = "<group>"; };
+		BE4476392C1A34DB00ADDC59 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		BE44763B2C1A351200ADDC59 /* ConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +183,7 @@
 		BE028FD12C0D367300B81352 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BE4476322C1A344B00ADDC59 /* AzureAIViews */,
 				BE44762D2C17268600ADDC59 /* HomeViews */,
 				BE4475CA2C158D7300ADDC59 /* AuthViews */,
 				BE028FE82C10037900B81352 /* AzureAITestView.swift */,
@@ -213,6 +224,18 @@
 				BE44762B2C17266C00ADDC59 /* HeaderView.swift */,
 			);
 			path = HomeViews;
+			sourceTree = "<group>";
+		};
+		BE4476322C1A344B00ADDC59 /* AzureAIViews */ = {
+			isa = PBXGroup;
+			children = (
+				BE4476332C1A347C00ADDC59 /* InstructionView.swift */,
+				BE4476352C1A349A00ADDC59 /* CameraView.swift */,
+				BE4476372C1A34BE00ADDC59 /* ImageReviewView.swift */,
+				BE4476392C1A34DB00ADDC59 /* LoadingView.swift */,
+				BE44763B2C1A351200ADDC59 /* ConfirmationView.swift */,
+			);
+			path = AzureAIViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,15 +321,20 @@
 				BE44762F2C17E23900ADDC59 /* DatePickerView.swift in Sources */,
 				BE4476242C17250D00ADDC59 /* ProgressCircleView.swift in Sources */,
 				BE4475C32C15835900ADDC59 /* AuthViewModel.swift in Sources */,
+				BE4476342C1A347C00ADDC59 /* InstructionView.swift in Sources */,
 				BE4475C92C158D0400ADDC59 /* RegisterView.swift in Sources */,
 				BE028FC32C0D360000B81352 /* ContentView.swift in Sources */,
+				BE4476382C1A34BE00ADDC59 /* ImageReviewView.swift in Sources */,
 				BE028FDD2C0EEBA000B81352 /* MedicineAPIModel.swift in Sources */,
 				BE028FDF2C0F18DD00B81352 /* AzureAIService.swift in Sources */,
 				BE44762C2C17266C00ADDC59 /* HeaderView.swift in Sources */,
 				BE4476202C16C36B00ADDC59 /* HomeMainViewModel.swift in Sources */,
 				BE4475C52C158A6200ADDC59 /* LoginView.swift in Sources */,
 				BE028FDB2C0D5CFC00B81352 /* AuthResponse.swift in Sources */,
+				BE44763C2C1A351200ADDC59 /* ConfirmationView.swift in Sources */,
 				BE4476262C17255100ADDC59 /* PillSectionView.swift in Sources */,
+				BE4476362C1A349A00ADDC59 /* CameraView.swift in Sources */,
+				BE44763A2C1A34DB00ADDC59 /* LoadingView.swift in Sources */,
 				BE028FC12C0D360000B81352 /* iOS_MedManagerApp.swift in Sources */,
 				BE4475D02C1598E900ADDC59 /* PrescriptionResponse.swift in Sources */,
 				BE44761E2C16C34F00ADDC59 /* HomeMainView.swift in Sources */,

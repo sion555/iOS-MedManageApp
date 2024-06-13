@@ -98,7 +98,7 @@ struct PillSectionView: View {
     var body: some View {
         VStack {
             Button(action: {
-                withAnimation {
+                withAnimation(.easeInOut) {
                     isExpanded.toggle()
                 }
             }) {
@@ -120,7 +120,7 @@ struct PillSectionView: View {
                         Spacer()
                         Image(systemName: pill.isTaken ? "checkmark.circle.fill" : "circle")
                             .onTapGesture {
-                                withAnimation {
+                                withAnimation(.easeInOut) {
                                     viewModel.togglePill(pill: pill)
                                 }
                             }
@@ -134,7 +134,6 @@ struct PillSectionView: View {
         }
     }
 }
-
 
 
 //#Preview {
