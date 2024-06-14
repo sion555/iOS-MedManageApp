@@ -18,9 +18,10 @@
 //                .padding()
 //            Spacer()
 //            Button("Use Photo") {
-//                // 사진 사용 로직
+//                
+//                
 //                image = UIImage(named: "sample_image") // 예시
-//                isPresented = false
+//                isPresented = true
 //            }
 //            .padding()
 //            .background(Color.blue)
@@ -61,6 +62,8 @@ struct CameraView: UIViewControllerRepresentable {
 
     @Environment(\.presentationMode) var presentationMode
     @Binding var image: UIImage?
+    
+    
     var sourceType: UIImagePickerController.SourceType = .camera
 
     func makeCoordinator() -> Coordinator {

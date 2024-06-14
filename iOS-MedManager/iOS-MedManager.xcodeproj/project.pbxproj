@@ -42,6 +42,7 @@
 		BE4476382C1A34BE00ADDC59 /* ImageReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4476372C1A34BE00ADDC59 /* ImageReviewView.swift */; };
 		BE44763A2C1A34DB00ADDC59 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4476392C1A34DB00ADDC59 /* LoadingView.swift */; };
 		BE44763C2C1A351200ADDC59 /* ConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE44763B2C1A351200ADDC59 /* ConfirmationView.swift */; };
+		BE44763E2C1AFA7D00ADDC59 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE44763D2C1AFA7D00ADDC59 /* TestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -94,6 +95,7 @@
 		BE4476372C1A34BE00ADDC59 /* ImageReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageReviewView.swift; sourceTree = "<group>"; };
 		BE4476392C1A34DB00ADDC59 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		BE44763B2C1A351200ADDC59 /* ConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationView.swift; sourceTree = "<group>"; };
+		BE44763D2C1AFA7D00ADDC59 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				BE44761D2C16C34F00ADDC59 /* HomeMainView.swift */,
+				BE44763D2C1AFA7D00ADDC59 /* TestView.swift */,
 				BE4476212C16C37C00ADDC59 /* PillRowView.swift */,
 				BE4476232C17250D00ADDC59 /* ProgressCircleView.swift */,
 				BE4476252C17255100ADDC59 /* PillSectionView.swift */,
@@ -320,6 +323,7 @@
 				BE4476312C19CA6600ADDC59 /* DatePickerPopupView.swift in Sources */,
 				BE44762F2C17E23900ADDC59 /* DatePickerView.swift in Sources */,
 				BE4476242C17250D00ADDC59 /* ProgressCircleView.swift in Sources */,
+				BE44763E2C1AFA7D00ADDC59 /* TestView.swift in Sources */,
 				BE4475C32C15835900ADDC59 /* AuthViewModel.swift in Sources */,
 				BE4476342C1A347C00ADDC59 /* InstructionView.swift in Sources */,
 				BE4475C92C158D0400ADDC59 /* RegisterView.swift in Sources */,

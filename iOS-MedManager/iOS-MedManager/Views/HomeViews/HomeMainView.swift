@@ -10,19 +10,24 @@ import SwiftUI
 struct HomeMainView: View {
     
     @StateObject private var viewModel = HomeMainViewModel()
+    
     @State private var isMorningExpanded = false
     @State private var isAfternoonExpanded = false
     @State private var isEveningExpanded = false
     @State private var isShowingPopup = false
+    
     @State private var showingDatePicker = false
     @State private var showingCameraView = false
     @State private var showingImageReviewView = false
     @State private var showingLoadingView = false
     @State private var showingConfirmationView = false
     @State private var showingInstructionView = false
+    
     @State private var selectedImage: UIImage?
     @State private var isUploading = false
+    
     @StateObject private var aiViewModel = AzureDocumentIntelligenceViewModel()
+    
     @State private var buttonFrame: CGRect = .zero
 
     var body: some View {
@@ -159,7 +164,7 @@ struct HomeMainView: View {
                         HStack {
                             Spacer()
                             VStack(spacing: 20) {
-                                NavigationLink(destination: InstructionView(isPresented: $showingCameraView, selectedImage: $selectedImage)) {
+                                NavigationLink(destination: InstructionView()) {
                                     HStack {
                                         Image(systemName: "camera")
                                         Text("약 봉투 촬영")
@@ -182,35 +187,11 @@ struct HomeMainView: View {
                         .frame(maxWidth: .infinity)
                         .frame(height: buttonFrame.height) // 버튼의 높이만큼 공간 확보
                     }
-                    .padding(.bottom, buttonFrame.height + 20) // 버튼의 높이만큼 공간 확보
+                    .padding(.bottom, buttonFrame.height + 140) // 버튼의 높이만큼 공간 확보
                 }
             }
-            .navigationDestination(isPresented: $showingCameraView) {
-                CameraView(image: $selectedImage)
-                    .onDisappear {
-                        if selectedImage != nil {
-                            showingImageReviewView = true
-                        }
-                    }
-            }
             .navigationDestination(isPresented: $showingImageReviewView) {
-                ImageReviewView(isPresented: $showingImageReviewView, selectedImage: $selectedImage)
-            }
-            .navigationDestination(isPresented: $showingLoadingView) {
-                LoadingView(isPresented: $showingLoadingView, aiViewModel: aiViewModel)
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                            showingLoadingView = false
-                            if aiViewModel.result != "" {
-                                showingConfirmationView = true
-                            } else {
-                                showingImageReviewView = true
-                            }
-                        }
-                    }
-            }
-            .navigationDestination(isPresented: $showingConfirmationView) {
-                ConfirmationView(isPresented: $showingConfirmationView, pillName: aiViewModel.result, pillType: aiViewModel.result, instruction: aiViewModel.result)
+                ImageReviewView(isPresented: $showingImageReviewView, selectedImage: $selectedImage, aiViewModel: aiViewModel, showingLoadingView: $showingLoadingView)
             }
         }
     }
@@ -221,6 +202,22 @@ struct HomeMainView: View {
 }
 
 
+//            .navigationDestination(isPresented: $showingLoadingView) {
+//                LoadingView(aiViewModel: aiViewModel)
+//                    .onAppear {
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//                            showingLoadingView = false
+//                            if aiViewModel.result != "" {
+//                                showingConfirmationView = true
+//                            } else {
+//                                showingImageReviewView = true
+//                            }
+//                        }
+//                    }
+//            }
+//            .navigationDestination(isPresented: $showingConfirmationView) {
+//                ConfirmationView(isPresented: $showingConfirmationView, pillName: aiViewModel.result, pillType: aiViewModel.result, instruction: aiViewModel.result)
+//            }
 
 
 

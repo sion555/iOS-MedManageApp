@@ -10,6 +10,8 @@ import SwiftUI
 struct ImageReviewView: View {
     @Binding var isPresented: Bool
     @Binding var selectedImage: UIImage?
+    @ObservedObject var aiViewModel: AzureDocumentIntelligenceViewModel
+    @Binding var showingLoadingView: Bool
 
     var body: some View {
         VStack {
@@ -30,7 +32,11 @@ struct ImageReviewView: View {
                 .cornerRadius(10)
                 
                 Button("전송") {
-                    isPresented = true
+                    if let image = selectedImage, let imageData = image.jpegData(compressionQuality: 1.0) {
+                        showingLoadingView = false
+//                        aiViewModel.analyzeImage(imageData: imageData)
+                        isPresented = false
+                    }
                 }
                 .padding()
                 .background(Color.green)
@@ -39,12 +45,16 @@ struct ImageReviewView: View {
             }
         }
         .navigationTitle("이미지 확인")
+        .navigationDestination(isPresented: $isPresented) {
+            LoadingView(aiViewModel: aiViewModel)
+        }
     }
 }
 
 #Preview {
-    ImageReviewView(isPresented: .constant(true), selectedImage: .constant(UIImage(named: "sample_image")))
+    ImageReviewView(isPresented: .constant(true), selectedImage: .constant(UIImage(named: "sample_image")), aiViewModel: AzureDocumentIntelligenceViewModel(), showingLoadingView: .constant(false))
 }
+
 
 
 

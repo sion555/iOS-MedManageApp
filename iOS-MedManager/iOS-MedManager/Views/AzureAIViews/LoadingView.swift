@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct LoadingView: View {
-    @Binding var isPresented: Bool
     @ObservedObject var aiViewModel: AzureDocumentIntelligenceViewModel
 
     var body: some View {
         VStack {
-            Text("전송 중...")
+            Text("응답 받아오는 중...")
                 .font(.title)
                 .padding()
             ProgressView()
@@ -26,8 +25,9 @@ struct LoadingView: View {
 }
 
 #Preview {
-    LoadingView(isPresented: .constant(true), aiViewModel: AzureDocumentIntelligenceViewModel())
+    LoadingView(aiViewModel: AzureDocumentIntelligenceViewModel())
 }
+
 
 
 

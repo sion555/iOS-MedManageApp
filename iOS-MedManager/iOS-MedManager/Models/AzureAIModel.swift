@@ -7,26 +7,26 @@
 
 import Foundation
 
-struct AnalyzeResult: Decodable {
+struct AnalyzeResult: Codable {
     let status: String
     let createdDateTime: String?
     let lastUpdatedDateTime: String?
     let analyzeResult: DocumentAnalyzeResult?
 }
 
-struct DocumentAnalyzeResult: Decodable {
+struct DocumentAnalyzeResult: Codable {
     let apiVersion: String
     let modelId: String
     let stringIndexType: String
     let documents: [Document]
 }
 
-struct Document: Decodable {
+struct Document: Codable {
     let docType: String
     let fields: DocumentFields
 }
 
-struct DocumentFields: Decodable {
+struct DocumentFields: Codable {
     let medicine: MedicineField?
     let receipt: ReceiptField?
     
@@ -36,23 +36,23 @@ struct DocumentFields: Decodable {
     }
 }
 
-struct MedicineField: Decodable {
+struct MedicineField: Codable {
     let type: String
     let valueArray: [Medicine]
 }
 
-struct Medicine: Decodable {
+struct Medicine: Codable {
     let type: String
     let valueObject: PillDetails
 }
 
-struct PillDetails: Decodable {
+struct PillDetails: Codable {
     let pillName: PillInfo
     let pillType: PillInfo
     let instruction: PillInfo
 }
 
-struct PillInfo: Decodable {
+struct PillInfo: Codable {
     let type: String
     let valueString: String
     let content: String

@@ -20,12 +20,7 @@ struct ContentView: View {
                         .tabItem {
                             Image(systemName: "house.fill")
                             Text("홈")
-                        }
-                    InstructionView(isPresented: $isPresented, selectedImage: $image)
-                        .tabItem {
-                            Image(systemName: "house.fill")
-                            Text("instructionTest")
-                        }
+                        }                   
                 }
             } else {
                 LoginView(isLoggedIn: $isLoggedIn)
